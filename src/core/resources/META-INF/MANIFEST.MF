@@ -1,3 +1,0 @@
-Manifest-Version: 1.0
-FMLCorePlugin: powercrystals.minefactoryreloaded.asm.LoadingPlugin
-Maven-Artifact: powercrystals:MineFactoryReloaded-core:${core_version}
