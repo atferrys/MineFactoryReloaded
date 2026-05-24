@@ -3,9 +3,7 @@ package powercrystals.minefactoryreloaded;
 import codechicken.lib.CodeChickenLib;
 import cofh.CoFHCore;
 import cofh.cofhworld.CoFHWorld;
-import cofh.redstoneflux.RedstoneFlux;
 import net.minecraft.util.ResourceLocation;
-import powercrystals.minefactoryreloaded.Tags;
 
 import java.util.Locale;
 
@@ -18,7 +16,7 @@ public class MFRProps {
 
 	public static final String MOD_ID = Tags.MOD_ID;
 
-	public static final String DEPENDENCIES = CoFHCore.VERSION_GROUP + CodeChickenLib.MOD_VERSION_DEP + RedstoneFlux.VERSION_GROUP + CoFHWorld.VERSION_GROUP;
+	public static final String DEPENDENCIES = CoFHCore.VERSION_GROUP + CodeChickenLib.MOD_VERSION_DEP + "required-after:redstoneflux;" + CoFHWorld.VERSION_GROUP;
 
 	public static final String MOD_NETWORK_CHANNEL = "MFReloaded";
 
