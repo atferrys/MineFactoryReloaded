@@ -12,12 +12,12 @@ public class Chococraft implements IMFRIntegrator {
 
 	public void load() throws ClassNotFoundException, NoSuchFieldException, IllegalAccessException {
 
-		Class<?> blocks = Class.forName("chococraft.common.config.ChocoCraftBlocks");
+		Class<?> blocks = Class.forName("net.xalcon.chococraft.common.init.ModBlocks");
 
-		Block blockId = ((Block) (blocks.getField("gysahlStemBlock").get(null)));
+		Block blockId = ((Block) (blocks.getField("gysahlGreen").get(null)));
 
-		Class<?> items = Class.forName("chococraft.common.config.ChocoCraftItems");
-		Item seedId = ((Item) (items.getField("gysahlSeedsItem").get(null)));
+		Class<?> items = Class.forName("net.xalcon.chococraft.common.init.ModItems");
+		Item seedId = ((Item) (items.getField("gysahlGreenSeeds").get(null)));
 
 		REGISTRY.registerPlantable(new PlantableCropPlant(seedId, blockId));
 		REGISTRY.registerHarvestable(new HarvestableChococraft(blockId));
