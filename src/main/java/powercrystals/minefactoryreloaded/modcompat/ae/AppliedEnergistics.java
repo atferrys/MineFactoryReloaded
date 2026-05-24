@@ -26,9 +26,9 @@ public class AppliedEnergistics implements IMFRIntegrator {
 				stack(rednetCableBlock, 1, 0));
 		FMLInterModComms.sendMessage(APP_ENG, "add-p2p-attunement-redstone",
 				stack(rednetCableBlock, 1, 1));
-		FMLInterModComms.sendMessage(APP_ENG, "add-p2p-attunement-rf-power",
+		FMLInterModComms.sendMessage(APP_ENG, "add-p2p-attunement-fe-power",
 				stack(rednetCableBlock, 1, 2));
-		FMLInterModComms.sendMessage(APP_ENG, "add-p2p-attunement-rf-power",
+		FMLInterModComms.sendMessage(APP_ENG, "add-p2p-attunement-fe-power",
 				stack(rednetCableBlock, 1, 3));
 		FMLInterModComms.sendMessage(APP_ENG, "add-p2p-attunement-fluid",
 				stack(plasticPipeBlock, 1, 0));
