@@ -42,13 +42,13 @@ public class Forestry implements IMFRIntegrator {
 			}
 		});
 
-		Item item = findItem(FORESTRY, "fertilizerCompound");
+		Item item = findItem(FORESTRY, "fertilizer_compound");
 		if (item != null)
 			REGISTRY.registerFertilizer(new FertilizerStandard(item, 0));
 		else
 			log.error("Forestry fertilizer null!");
 
-		item = findItem(FORESTRY, "fertilizerBio");
+		item = findItem(FORESTRY, "fertilizer_bio");
 		if (item != null)
 			REGISTRY.registerFertilizer(new FertilizerStandard(item, 0));
 		else
@@ -66,14 +66,14 @@ public class Forestry implements IMFRIntegrator {
 		else
 			log.error("Forestry ash null!");
 
-		item = findItem(FORESTRY, "decayingWheat");
+		item = findItem(FORESTRY, "decaying_wheat");
 		if (item != null)
 			REGISTRY.registerSludgeDrop(20, new ItemStack(item));
 		else
 			log.error("Forestry wheat null!");
 
 		item = findItem(FORESTRY, "sapling");
-		Block block = findBlock(FORESTRY, "saplingGE");
+		Block block = findBlock(FORESTRY, "sapling_ge");
 		if (item != null && block != AIR) {
 			ForestrySapling sapling = new ForestrySapling(item, block);
 			REGISTRY.registerPlantable(sapling);
@@ -81,7 +81,7 @@ public class Forestry implements IMFRIntegrator {
 		} else
 			log.error("Forestry sapling/block null!");
 
-		block = findBlock(FORESTRY, "soil");
+		block = findBlock(FORESTRY, "bog_earth");
 		if (block != AIR) {
 			ForestryBogEarth bog = new ForestryBogEarth(block);
 			REGISTRY.registerPlantable(bog);
@@ -91,16 +91,12 @@ public class Forestry implements IMFRIntegrator {
 		} else
 			log.error("Forestry bog earth null!");
 
-		for (int i = 1; true; ++i) {
-			block = findBlock(FORESTRY, "log" + i);
-			l: if (block == AIR) {
-				if (i > 1)
+		for (int i = 0; true; i++) {
+			block = findBlock(FORESTRY, "logs." + i);
+			if (block == AIR) {
+				if(i > 0) {
 					log.debug("Forestry logs null at " + i + ".");
-				else {
-					block = findBlock(FORESTRY, "logs");
-					if (block != AIR) {
-						break l;
-					}
+				} else {
 					log.error("Forestry logs null!");
 				}
 				break;
@@ -109,17 +105,27 @@ public class Forestry implements IMFRIntegrator {
 			REGISTRY.registerFruitLogBlock(block);
 		}
 
-		for (int i = 1; true; ++i) {
-			block = findBlock(FORESTRY, "fireproofLog" + i);
-			l: if (block == AIR) {
-				if (i > 1)
-					log.debug("Forestry logs null at " + i + ".");
-				else {
-					block = findBlock(FORESTRY, "logsFireproof");
-					if (block != AIR) {
-						break l;
-					}
-					log.error("Forestry logs null!");
+		for (int i = 0; true; i++) {
+			block = findBlock(FORESTRY, "logs.fireproof." + i);
+			if (block == AIR) {
+				if(i > 0) {
+					log.debug("Forestry fireproof logs null at " + i + ".");
+				} else {
+					log.error("Forestry fireproof logs null!");
+				}
+				break;
+			}
+			REGISTRY.registerHarvestable(new HarvestableWood(block));
+			REGISTRY.registerFruitLogBlock(block);
+		}
+
+		for (int i = 0; true; i++) {
+			block = findBlock(FORESTRY, "logs.vanilla.fireproof." + i);
+			if (block == AIR) {
+				if(i > 0) {
+					log.debug("Forestry vanilla fireproof logs null at " + i + ".");
+				} else {
+					log.error("Forestry vanilla fireproof logs null!");
 				}
 				break;
 			}
@@ -133,18 +139,90 @@ public class Forestry implements IMFRIntegrator {
 			REGISTRY.registerFertilizable(leaf);
 			REGISTRY.registerHarvestable(leaf);
 			REGISTRY.registerFruit(leaf);
-		} else
+		} else {
 			log.error("Forestry leaves null!");
+		}
 
-		block = findBlock(FORESTRY, "pods");
-		item = findItem(FORESTRY, "grafterProven");
+		for (int i = 0; true; i++) {
+			block = findBlock(FORESTRY, "leaves.decorative." + i);
+			if (block == AIR) {
+				if(i > 0) {
+					log.debug("Forestry decorative leaves null at " + i + ".");
+				} else {
+					log.error("Forestry decorative leaves null!");
+				}
+				break;
+			}
+			ForestryLeaf leaf = new ForestryLeaf(block);
+			REGISTRY.registerFertilizable(leaf);
+			REGISTRY.registerHarvestable(leaf);
+			REGISTRY.registerFruit(leaf);
+		}
+
+		for (int i = 0; true; i++) {
+			block = findBlock(FORESTRY, "leaves.default." + i);
+			if (block == AIR) {
+				if(i > 0) {
+					log.debug("Forestry default leaves null at " + i + ".");
+				} else {
+					log.error("Forestry default leaves null!");
+				}
+				break;
+			}
+			ForestryLeaf leaf = new ForestryLeaf(block);
+			REGISTRY.registerFertilizable(leaf);
+			REGISTRY.registerHarvestable(leaf);
+			REGISTRY.registerFruit(leaf);
+		}
+
+		for (int i = 0; true; i++) {
+			block = findBlock(FORESTRY, "leaves.default.fruit." + i);
+			if (block == AIR) {
+				if(i > 0) {
+					log.debug("Forestry default fruit leaves null at " + i + ".");
+				} else {
+					log.error("Forestry default fruit leaves null!");
+				}
+				break;
+			}
+			ForestryLeaf leaf = new ForestryLeaf(block);
+			REGISTRY.registerFertilizable(leaf);
+			REGISTRY.registerHarvestable(leaf);
+			REGISTRY.registerFruit(leaf);
+		}
+
+		item = findItem(FORESTRY, "grafter_proven");
+
+		block = findBlock(FORESTRY, "pods.cocoa");
 		if (block != AIR) {
 			ForestryPod pod = new ForestryPod(block, item);
 			REGISTRY.registerFertilizable(pod);
 			REGISTRY.registerHarvestable(pod);
 			REGISTRY.registerFruit(pod);
-		} else
-			log.error("Forestry pods null!");
+		} else {
+			log.error("Forestry cocoa pods null!");
+		}
+
+		block = findBlock(FORESTRY, "pods.dates");
+		if (block != AIR) {
+			ForestryPod pod = new ForestryPod(block, item);
+			REGISTRY.registerFertilizable(pod);
+			REGISTRY.registerHarvestable(pod);
+			REGISTRY.registerFruit(pod);
+		} else {
+			log.error("Forestry dates pods null!");
+		}
+
+		block = findBlock(FORESTRY, "pods.papaya");
+		if (block != AIR) {
+			ForestryPod pod = new ForestryPod(block, item);
+			REGISTRY.registerFertilizable(pod);
+			REGISTRY.registerHarvestable(pod);
+			REGISTRY.registerFruit(pod);
+		} else {
+			log.error("Forestry papaya pods null!");
+		}
+
 	}
 
 	public void postLoad() {
