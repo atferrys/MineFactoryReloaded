@@ -1122,7 +1122,7 @@ public class Minecraft implements IMFRRecipeSet {
 			};
 
 			//region normal
-			for (int i = 0; i < upgrade_radius_positive.length; ++i) {
+			for (int i = 0; i < materials.length; ++i) {
 				upgrade_radius_positive[i].addShaped(
 						shape,
 						'I', materials[i],
@@ -1151,7 +1151,7 @@ public class Minecraft implements IMFRRecipeSet {
 					'R', "dustRedstone",
 					'G', expensive_upgrade_radius_negative_1
 			);
-			for (int i = 1; i < expensive_upgrade_radius_positive.length; ++i) {
+			for (int i = 1; i < materials.length; ++i) {
 				expensive_upgrade_radius_positive[i].addShaped(
 						shape,
 						'I', materials[i],
