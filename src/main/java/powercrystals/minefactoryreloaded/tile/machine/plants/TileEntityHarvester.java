@@ -51,7 +51,7 @@ public class TileEntityHarvester extends TileEntityFactoryPowered {
 		_settings.put(SettingNames.SHEARS_MODE, BooleanSetting.FALSE);
 		_settings.put(SettingNames.HARVEST_SMALL_MUSHROOMS, BooleanSetting.FALSE);
 		_settings.put(SettingNames.PLAY_SOUNDS, (BooleanSetting) MFRConfig.playSounds::getBoolean);
-		DEFAULT_SETTINGS = java.util.Collections.unmodifiableMap(_settings);
+		DEFAULT_SETTINGS = Collections.unmodifiableMap(_settings);
 	}
 
 	private Map<String, ISetting> _settings;

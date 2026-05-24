@@ -9,7 +9,7 @@ import powercrystals.minefactoryreloaded.api.util.IFactorySettings;
 
 public class HarvestableCropPlant extends HarvestableStandard {
 
-	public HarvestableCropPlant(net.minecraft.block.BlockCrops block) {
+	public HarvestableCropPlant(BlockCrops block) {
 
 		super(block, HarvestType.Normal);
 	}
