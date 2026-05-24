@@ -18,11 +18,11 @@ import static powercrystals.minefactoryreloaded.modcompat.Compats.ModIds.MULTIPA
 @IMFRIntegrator.DependsOn(MULTIPARTCBE)
 public class MultipartCBE implements IMFRIntegrator {
 
-	@GameRegistry.ObjectHolder(value = MFR + ":decorative_brick")
+	@GameRegistry.ObjectHolder(value = MFR + ":brick")
 	public static final Item factoryDecorativeBrickBlock = Items.AIR;
-	@GameRegistry.ObjectHolder(value = MFR + ":decorative_stone")
+	@GameRegistry.ObjectHolder(value = MFR + ":stone")
 	public static final Item factoryDecorativeStoneBlock = Items.AIR;
-	@GameRegistry.ObjectHolder(value = MFR + ":stained_glass_block")
+	@GameRegistry.ObjectHolder(value = MFR + ":stained_glass_block_block")
 	public static final Item factoryGlassBlock = Items.AIR;
 	@GameRegistry.ObjectHolder(value = MFR + ":rubber_wood_leaves")
 	public static final Item rubberLeavesBlock = Items.AIR;
