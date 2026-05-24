@@ -70,32 +70,33 @@ public class TwilightForest implements IMFRIntegrator {
 		Class tfBlocks = Class.forName("twilightforest.block.TFBlocks");
 		Class tfItems = Class.forName("twilightforest.item.TFItems");
 
-		REGISTRY.registerHarvestable(new HarvestableWood(((Block) tfBlocks.getField("log").get(null))));
-		REGISTRY.registerHarvestable(new HarvestableWood(((Block) tfBlocks.getField("giantLog").get(null))));
-		REGISTRY.registerHarvestable(new HarvestableWood(((Block) tfBlocks.getField("magicLog").get(null))));
-		REGISTRY.registerHarvestable(new HarvestableWood(((Block) tfBlocks.getField("magicLogSpecial").get(null))));
-		REGISTRY.registerHarvestable(new HarvestableWood(((Block) tfBlocks.getField("hugeStalk").get(null))));
+		REGISTRY.registerHarvestable(new HarvestableWood(((Block) tfBlocks.getField("twilight_log").get(null))));
+		REGISTRY.registerHarvestable(new HarvestableWood(((Block) tfBlocks.getField("giant_log").get(null))));
+		REGISTRY.registerHarvestable(new HarvestableWood(((Block) tfBlocks.getField("magic_log").get(null))));
+		REGISTRY.registerHarvestable(new HarvestableWood(((Block) tfBlocks.getField("magic_log_core").get(null))));
+		REGISTRY.registerHarvestable(new HarvestableWood(((Block) tfBlocks.getField("cinder_log").get(null))));
+		REGISTRY.registerHarvestable(new HarvestableWood(((Block) tfBlocks.getField("huge_stalk").get(null))));
 		REGISTRY.registerHarvestable(new HarvestableStandard(((Block) tfBlocks.getField("root").get(null)),
 				HarvestType.Tree));
-		REGISTRY.registerHarvestable(new HarvestableStandard(((Block) tfBlocks.getField("hugeGloomBlock").get(null))));
-		REGISTRY.registerHarvestable(new HarvestableTreeLeaves(((Block) tfBlocks.getField("leaves").get(null))));
-		REGISTRY.registerHarvestable(new HarvestableTreeLeaves(((Block) tfBlocks.getField("leaves3").get(null))));
-		REGISTRY.registerHarvestable(new HarvestableTreeLeaves(((Block) tfBlocks.getField("darkleaves").get(null))));
-		REGISTRY.registerHarvestable(new HarvestableTreeLeaves(((Block) tfBlocks.getField("giantLeaves").get(null))));
-		REGISTRY.registerHarvestable(new HarvestableTreeLeaves(((Block) tfBlocks.getField("magicLeaves").get(null))));
-		REGISTRY.registerHarvestable(new HarvestableTreeLeaves(((Block) tfBlocks.getField("thornRose").get(null))));
+		REGISTRY.registerHarvestable(new HarvestableStandard(((Block) tfBlocks.getField("huge_mushgloom").get(null))));
+		REGISTRY.registerHarvestable(new HarvestableTreeLeaves(((Block) tfBlocks.getField("twilight_leaves").get(null))));
+		REGISTRY.registerHarvestable(new HarvestableTreeLeaves(((Block) tfBlocks.getField("twilight_leaves_3").get(null))));
+		REGISTRY.registerHarvestable(new HarvestableTreeLeaves(((Block) tfBlocks.getField("dark_leaves").get(null))));
+		REGISTRY.registerHarvestable(new HarvestableTreeLeaves(((Block) tfBlocks.getField("giant_leaves").get(null))));
+		REGISTRY.registerHarvestable(new HarvestableTreeLeaves(((Block) tfBlocks.getField("magic_leaves").get(null))));
+		REGISTRY.registerHarvestable(new HarvestableTreeLeaves(((Block) tfBlocks.getField("thorn_rose").get(null))));
 		REGISTRY.registerHarvestable(new HarvestableTreeLeaves(((Block) tfBlocks.getField("hedge").get(null))));
 		REGISTRY.registerHarvestable(new HarvestableTreeLeaves(((Block) tfBlocks.getField("firefly").get(null))));
 		REGISTRY.registerHarvestable(new HarvestableTreeLeaves(((Block) tfBlocks.getField("cicada").get(null))));
-		REGISTRY.registerHarvestable(new HarvestableShearable(((Block) tfBlocks.getField("plant").get(null))));
-		REGISTRY.registerHarvestable(new HarvestableShearable(((Block) tfBlocks.getField("trollBer").get(null)),
+		REGISTRY.registerHarvestable(new HarvestableShearable(((Block) tfBlocks.getField("twilight_plant").get(null))));
+		REGISTRY.registerHarvestable(new HarvestableShearable(((Block) tfBlocks.getField("trollber").get(null)),
 				HarvestType.Column));
 
-		REGISTRY.registerPlantable(new PlantableSapling(((Block) tfBlocks.getField("sapling").get(null))));
+		REGISTRY.registerPlantable(new PlantableSapling(((Block) tfBlocks.getField("twilight_sapling").get(null))));
 		REGISTRY.registerPlantable(new PlantableStandard(((Item) tfItems.getField("torchberries").get(null)),
-				((Block) tfBlocks.getField("unripeTrollBer").get(null))));
+				((Block) tfBlocks.getField("unripe_trollber").get(null))));
 
-		REGISTRY.registerFertilizable(new FertilizableStandard(((IGrowable) tfBlocks.getField("sapling").get(null))));
+		REGISTRY.registerFertilizable(new FertilizableStandard(((IGrowable) tfBlocks.getField("twilight_sapling").get(null))));
 
 		REGISTRY.registerRandomMobProvider(new TwilightForestMobProvider());
 	}
