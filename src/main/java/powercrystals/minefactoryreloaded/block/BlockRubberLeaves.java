@@ -48,7 +48,7 @@ public class BlockRubberLeaves extends BlockLeaves implements IRedNetNoConnectio
 	
 	public BlockRubberLeaves() {
 
-		setUnlocalizedName("mfr.rubber_wood.leaves");
+		setTranslationKey("mfr.rubber_wood.leaves");
 		setCreativeTab(MFRCreativeTab.tab);
 		MFRThings.registerInitializer(this);
 		MineFactoryReloadedCore.proxy.addModelRegister(this);
@@ -69,9 +69,8 @@ public class BlockRubberLeaves extends BlockLeaves implements IRedNetNoConnectio
 
 	@SideOnly(Side.CLIENT)
 	@Override
-	public BlockRenderLayer getBlockLayer()	{
-		
-		return Blocks.LEAVES.getBlockLayer();
+	public BlockRenderLayer getRenderLayer()	{
+		return Blocks.LEAVES.getRenderLayer();
 	}
 
 	@Override
@@ -286,7 +285,7 @@ public class BlockRubberLeaves extends BlockLeaves implements IRedNetNoConnectio
 
 		Minecraft.getMinecraft().getBlockColors().registerBlockColorHandler((state, world, pos, tintIndex) -> {
 
-			BlockRubberLeaves.Variant variant = state.getValue(VARIANT);
+			Variant variant = state.getValue(VARIANT);
 
 			int foliageColor;
 			if (world != null && pos != null) {
@@ -295,7 +294,7 @@ public class BlockRubberLeaves extends BlockLeaves implements IRedNetNoConnectio
 				foliageColor = ColorizerFoliage.getFoliageColorBasic();
 			}
 
-			if (variant == BlockRubberLeaves.Variant.DRY) {
+			if (variant == Variant.DRY) {
 				int r = (foliageColor & 16711680) >> 16;
 				int g = (foliageColor & 65280) >> 8;
 				int b = foliageColor & 255;

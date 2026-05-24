@@ -134,7 +134,7 @@ public class BlockFactoryRail extends BlockRailBase implements IInitializer, IMo
 		if (!isPowered) {
 			return;
 		}
-		boolean newPowered = world.isBlockIndirectlyGettingPowered(pos) > 0;
+		boolean newPowered = world.getRedstonePowerFromNeighbors(pos) > 0;
 		boolean oldPowered = state.getValue(POWERED);
 		if (newPowered != oldPowered) {
 			world.setBlockState(pos, state.withProperty(POWERED, newPowered));

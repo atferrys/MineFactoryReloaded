@@ -68,9 +68,9 @@ public class ItemSafariNet extends ItemFactory implements IColorRegister {
 	}
 
 	@Override
-	public String getUnlocalizedName() {
+	public String getTranslationKey() {
 
-		return super.getUnlocalizedName();
+		return super.getTranslationKey();
 	}
 
 	@Override
@@ -188,9 +188,9 @@ public class ItemSafariNet extends ItemFactory implements IColorRegister {
 
 	private static Entity spawnCreature(World world, NBTTagCompound mobTag, double x, double y, double z, EnumFacing side) {
 
-		int offsetX = side.getFrontOffsetX();
+		int offsetX = side.getXOffset();
 		int offsetY = side == EnumFacing.DOWN ? -1 : 0;
-		int offsetZ = side.getFrontOffsetZ();
+		int offsetZ = side.getZOffset();
 
 		Entity e;
 		if (mobTag.getBoolean("mfr:hide") && !mobTag.hasKey("id", Constants.NBT.TAG_STRING)) {
