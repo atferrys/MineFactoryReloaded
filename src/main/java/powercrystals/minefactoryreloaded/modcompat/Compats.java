@@ -15,7 +15,6 @@ public class Compats {
 		public static final String FORESTRY = "forestry";
 		public static final String CHOCOCRAFT = "chococraft";
 		public static final String INDUSTRIAL_CRAFT = "ic2";
-		public static final String PROJECT_RED_EXPLORATION = "projred|exploration";
 		public static final String BACKTOOLS = "backtools";
 		public static final String MULTIPARTCBE = "microblockcbe";
 	}
