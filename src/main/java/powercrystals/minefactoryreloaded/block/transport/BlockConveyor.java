@@ -43,6 +43,7 @@ import powercrystals.minefactoryreloaded.core.MFRDyeColor;
 import powercrystals.minefactoryreloaded.core.MFRUtil;
 import powercrystals.minefactoryreloaded.gui.MFRCreativeTab;
 import powercrystals.minefactoryreloaded.item.ItemPlasticBoots;
+import powercrystals.minefactoryreloaded.mixin.TileEntityHopperAccessor;
 import powercrystals.minefactoryreloaded.render.IColorRegister;
 import powercrystals.minefactoryreloaded.render.ModelHelper;
 import powercrystals.minefactoryreloaded.tile.transport.TileEntityConveyor;
@@ -496,7 +497,7 @@ public class BlockConveyor extends BlockFactory implements IRedNetInputNode, ICo
 		} else if (teBelow instanceof IEntityCollidable) {
 			((IEntityCollidable) teBelow).onEntityCollided(entityitem);
 		} else if (teBelow instanceof TileEntityHopper) {
-			if (!((TileEntityHopper) teBelow).isOnTransferCooldown()) {
+			if (!((TileEntityHopperAccessor) teBelow).invokeIsOnTransferCooldown()) {
 				@Nonnull ItemStack toInsert = entityitem.getItem().copy();
 				toInsert.setCount(1);
 				toInsert = TileEntityHopper.putStackInInventoryAllSlots(conveyor, (IInventory) teBelow, toInsert, EnumFacing.UP);

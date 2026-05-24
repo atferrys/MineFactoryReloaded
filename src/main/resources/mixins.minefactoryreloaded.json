@@ -1,0 +1,17 @@
+{
+	"package": "powercrystals.minefactoryreloaded.mixin",
+	"required": true,
+	"refmap": "${mixin_refmap}",
+	"target": "@env(DEFAULT)",
+	"minVersion": "0.8.5",
+	"compatibilityLevel": "JAVA_8",
+	"mixins": [
+		"EntityLivingAccessor",
+		"EntityLivingBaseAccessor",
+		"TileEntityHopperAccessor"
+	],
+	"server": [],
+	"client": [
+      "FontRendererMixin"
+	]
+}

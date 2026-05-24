@@ -37,9 +37,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import static powercrystals.minefactoryreloaded.tile.transport.TileEntityPlasticPipe.ConnectionType.*;
 import static powercrystals.minefactoryreloaded.block.transport.BlockRedNetCable.subSelection;
 import static powercrystals.minefactoryreloaded.tile.transport.FluidNetwork.TRANSFER_RATE;
-import static powercrystals.minefactoryreloaded.tile.transport.TileEntityPlasticPipe.ConnectionType.*;
 
 public class TileEntityPlasticPipe extends TileEntityBase implements INode, ITraceable, ICustomHitBox {
 
@@ -465,7 +465,7 @@ public class TileEntityPlasticPipe extends TileEntityBase implements INode, ITra
 
 		if (capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY) {
 			return CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY
-					.cast(new TileEntityPlasticPipe.PlasticPipeFluidHandler(facing));
+					.cast(new PlasticPipeFluidHandler(facing));
 		}
 
 		return super.getCapability(capability, facing);

@@ -23,6 +23,7 @@ import powercrystals.minefactoryreloaded.gui.client.GuiAutoSpawner;
 import powercrystals.minefactoryreloaded.gui.client.GuiFactoryInventory;
 import powercrystals.minefactoryreloaded.gui.container.ContainerAutoSpawner;
 import powercrystals.minefactoryreloaded.item.ItemSafariNet;
+import powercrystals.minefactoryreloaded.mixin.EntityLivingAccessor;
 import powercrystals.minefactoryreloaded.setup.MFRConfig;
 import powercrystals.minefactoryreloaded.setup.MFRFluids;
 import powercrystals.minefactoryreloaded.setup.Machine;
@@ -90,19 +91,19 @@ public class TileEntityAutoSpawner extends TileEntityFactoryPowered {
 		int r = MFRRegistry.getBaseSpawnCost(id);
 
 		if (e instanceof EntityLiving) {
-			EntityLiving el = (EntityLiving) e;
+			EntityLivingAccessor el = (EntityLivingAccessor) e;
 
-			int t = Math.abs(el.experienceValue) + 1;
+			int t = Math.abs(el.getExperienceValue()) + 1;
 			r += t + t / 3;
 
-			for (int j = 0; j < el.inventoryArmor.size(); ++j) {
-				if (!el.inventoryArmor.get(j).isEmpty() && el.inventoryArmorDropChances[j] <= 1.0F) {
+			for (int j = 0; j < el.getInventoryArmor().size(); ++j) {
+				if (!el.getInventoryArmor().get(j).isEmpty() && el.getInventoryArmorDropChances()[j] <= 1.0F) {
 					r += 1 + 4;
 				}
 			}
 
-			for (int k = 0; k < el.inventoryHands.size(); ++k) {
-				if (!el.inventoryHands.get(k).isEmpty() && el.inventoryHandsDropChances[k] <= 1.0F) {
+			for (int k = 0; k < el.getInventoryHands().size(); ++k) {
+				if (!el.getInventoryHands().get(k).isEmpty() && el.getInventoryHandsDropChances()[k] <= 1.0F) {
 					r += 1 + 4;
 				}
 			}
