@@ -5,17 +5,18 @@ import cofh.CoFHCore;
 import cofh.cofhworld.CoFHWorld;
 import cofh.redstoneflux.RedstoneFlux;
 import net.minecraft.util.ResourceLocation;
+import powercrystals.minefactoryreloaded.Tags;
 
 import java.util.Locale;
 
 public class MFRProps {
 
-	public static final String MOD_NAME = "MineFactory Reloaded";
-	public static final String VERSION = "2.9.0B1";
+	public static final String MOD_NAME = Tags.MOD_NAME;
+	public static final String VERSION = Tags.VERSION;
 
 	public static final int DATA_VERSION = 100;
 
-	public static final String MOD_ID = "minefactoryreloaded";
+	public static final String MOD_ID = Tags.MOD_ID;
 
 	public static final String DEPENDENCIES = CoFHCore.VERSION_GROUP + CodeChickenLib.MOD_VERSION_DEP + RedstoneFlux.VERSION_GROUP + CoFHWorld.VERSION_GROUP;
 
