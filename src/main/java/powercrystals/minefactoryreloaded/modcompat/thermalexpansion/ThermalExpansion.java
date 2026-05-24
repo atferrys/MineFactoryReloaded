@@ -29,7 +29,7 @@ public class ThermalExpansion implements IMFRIntegrator, IRandomMobProvider {
 		final Item sulfur = findItem(THERMAL_FOUNDATION, "material");
 		final Item rawRubberItem = findItem(MFR, "rubber_raw");
 		final Item rubberBarItem = findItem(MFR, "rubber_bar");
-		final Item factoryDecorativeStoneBlock = findItem(MFR, "decorative_stone");
+		final Item factoryDecorativeStoneBlock = findItem(MFR, "stone");
 
 		REGISTRY.registerRandomMobProvider(this);
 
