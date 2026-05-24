@@ -2,7 +2,7 @@ package powercrystals.minefactoryreloaded.modcompat.ic2;
 
 import ic2.api.item.IC2Items;
 import ic2.api.recipe.IRecipeInput;
-import ic2.api.recipe.ISemiFluidFuelManager.BurnProperty;
+import ic2.api.recipe.ISemiFluidFuelManager;
 import ic2.api.recipe.Recipes;
 import ic2.core.item.tool.ItemToolWrench;
 import net.minecraft.block.Block;
@@ -85,17 +85,17 @@ public class IndustrialCraft implements IMFRIntegrator {
 		}
 
 		@Nonnull
-		ItemStack crop = IC2Items.getItem("crop");
+		ItemStack crop = IC2Items.getItem("crop_stick");
 		@Nonnull
-		ItemStack rubber = IC2Items.getItem("rubber").copy();
+		ItemStack rubber = IC2Items.getItem("crafting", "rubber").copy();
 		@Nonnull
-		ItemStack rubberSapling = IC2Items.getItem("rubberSapling");
+		ItemStack rubberSapling = IC2Items.getItem("sapling");
 		@Nonnull
-		ItemStack rubberLeaves = IC2Items.getItem("rubberLeaves");
+		ItemStack rubberLeaves = IC2Items.getItem("leaves");
 		@Nonnull
-		ItemStack rubberWood = IC2Items.getItem("rubberWood");
+		ItemStack rubberWood = IC2Items.getItem("rubber_wood");
 		@Nonnull
-		ItemStack stickyResin = IC2Items.getItem("resin");
+		ItemStack stickyResin = IC2Items.getItem("misc_resource", "resin");
 
 		if (rubberSapling != null) {
 			REGISTRY.registerPlantable(new PlantableSapling(rubberSapling.getItem(), Block.getBlockFromItem(rubberSapling.getItem())));
@@ -155,9 +155,9 @@ public class IndustrialCraft implements IMFRIntegrator {
 
 	private static void copyEthanol() {
 
-		BurnProperty q = Recipes.semiFluidGenerator.getBurnProperty(FluidRegistry.getFluid("bioethanol"));
+		ISemiFluidFuelManager.FuelProperty q = Recipes.semiFluidGenerator.getFuelProperty(FluidRegistry.getFluid("bioethanol"));
 		if (q != null)
-			Recipes.semiFluidGenerator.addFluid("biofuel", q.amount, q.power);
+			Recipes.semiFluidGenerator.addFluid("biofuel", q.energyPerMb, q.energyPerTick);
 		else if (FluidRegistry.getFluid("bioethanol") == null)
 			Recipes.semiFluidGenerator.addFluid("biofuel", 10, 16);
 	}
