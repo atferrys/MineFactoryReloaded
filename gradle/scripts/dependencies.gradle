@@ -108,4 +108,6 @@ dependencies {
 
     compileOnly "com.mod-buildcraft:buildcraft-api:8.0.0"
 
+    compileOnly rfg.deobf("curse.maven:agricraft-refitted-1459246:8119193")
+
 }
