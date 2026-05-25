@@ -1,18 +1,10 @@
 package powercrystals.minefactoryreloaded.asm;
 
 import com.google.common.base.Throwables;
-import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap;
 import net.minecraft.launchwrapper.IClassTransformer;
-import net.minecraft.launchwrapper.Launch;
-import net.minecraft.launchwrapper.LogWrapper;
-import org.apache.logging.log4j.Level;
 import org.objectweb.asm.*;
 import org.objectweb.asm.tree.*;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.OutputStream;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 
@@ -20,197 +12,22 @@ import static org.objectweb.asm.Opcodes.*;
 
 public class WorldTransformer implements IClassTransformer {
 
-	static final String worldServerProxy = "powercrystals/minefactoryreloaded/asmhooks/WorldServerProxy";
 	static final String worldServer = "net/minecraft/world/WorldServer";
 	static final String world = "net/minecraft/world/World";
-	static final String serverSig;
-	static final String worldSig;
-
-	static {
-		final String sigBody = "Lnet/minecraft/world/storage/ISaveHandler;" + "Lnet/minecraft/world/storage/WorldInfo;" +
-				"Lnet/minecraft/world/WorldProvider;" + "Lnet/minecraft/profiler/Profiler;" + "Z";
-		serverSig = "(L" + worldServer + ";)V";
-		worldSig = "(L" + world + ";)V";
-	}
-
-	private final static Object2IntOpenHashMap<String> transformerMap = new Object2IntOpenHashMap<>();
-	static {
-		transformerMap.put(worldServer.replace('/', '.'), 1);
-		transformerMap.put(world.replace('/', '.'), 2);
-		transformerMap.put(worldServerProxy.replace('/', '.'), 3);
-		transformerMap.put("net.minecraft.profiler.Profiler", 22);
-	}
-
-	private static void saveTransformedClass(final byte[] data, final String transformedName) {
-
-		File tempFolder = new File(Launch.minecraftHome, "CLASSLOADER_TEMP");
-		if (tempFolder == null) {
-			return;
-		}
-
-		final File outFile = new File(tempFolder, transformedName.replace('.', File.separatorChar) + ".class");
-		final File outDir = outFile.getParentFile();
-
-		if (!outDir.exists()) {
-			outDir.mkdirs();
-		}
-
-		if (outFile.exists()) {
-			outFile.delete();
-		}
-
-		try {
-			LogWrapper.fine("Saving transformed class \"%s\" to \"%s\"", transformedName, outFile.getAbsolutePath().replace('\\', '/'));
-
-			final OutputStream output = new FileOutputStream(outFile);
-			output.write(data);
-			output.close();
-		} catch (IOException ex) {
-			LogWrapper.log(Level.WARN, ex, "Could not save transformed class \"%s\"", transformedName);
-		}
-	}
-
-	private static byte[] alterProfiler(String name, byte[] bytes, ClassReader cr) {
-
-		String[] names;
-		names = new String[] { "endSection", "startSection", "endStartSection", "clearProfiling" };
-
-		name = name.replace('.', '/');
-		ClassNode cn = new ClassNode(ASM5);
-		cr.accept(cn, 0);
-
-		cn.fields.add(new FieldNode(ACC_PRIVATE, "cofh_stack", "Ljava/util/Deque;", null, null));
-		cn.fields.add(new FieldNode(ACC_PRIVATE, "cofh_endStart", "Z", null, Boolean.FALSE));
-		for (MethodNode m : cn.methods) {
-			if ("<init>".equals(m.name)) {
-				LabelNode a = new LabelNode(new Label());
-				AbstractInsnNode n;
-				for (n = m.instructions.getFirst(); n != null; n = n.getNext()) {
-					if (n.getOpcode() == INVOKESPECIAL) {
-						break;
-					}
-				}
-				m.instructions.insert(n, n = a);
-				m.instructions.insert(n, n = new LineNumberNode(-15000, a));
-				m.instructions.insert(n, n = new VarInsnNode(ALOAD, 0));
-				m.instructions.insert(n, n = new TypeInsnNode(NEW, "java/util/LinkedList"));
-				m.instructions.insert(n, n = new InsnNode(DUP));
-				m.instructions.insert(n, n = new MethodInsnNode(INVOKESPECIAL, "java/util/LinkedList", "<init>", "()V", false));
-				m.instructions.insert(n, n = new FieldInsnNode(PUTFIELD, name, "cofh_stack", "Ljava/util/Deque;"));
-			} else if (names[0].equals(m.name)) {
-				int c = 0;
-				for (AbstractInsnNode n = m.instructions.getFirst(); n != null; n = n.getNext()) {
-					if (n.getOpcode() == ALOAD && ++c > 1) {
-						LabelNode lCond = new LabelNode(new Label());
-						LabelNode lGuard = new LabelNode(new Label());
-						m.instructions.insertBefore(n, n = new VarInsnNode(ALOAD, 0));
-						m.instructions.insert(n, n = new FieldInsnNode(GETFIELD, name, "cofh_endStart", "Z"));
-						m.instructions.insert(n, n = new JumpInsnNode(IFNE, lGuard));
-						m.instructions.insert(n, n = new VarInsnNode(ALOAD, 0));
-						m.instructions.insert(n, n = new FieldInsnNode(GETFIELD, name, "cofh_stack", "Ljava/util/Deque;"));
-						m.instructions.insert(n, n = new MethodInsnNode(INVOKEINTERFACE, "java/util/Deque", "pop", "()Ljava/lang/Object;", true));
-						m.instructions.insert(n, n = new TypeInsnNode(CHECKCAST, "java/lang/Throwable"));
-						m.instructions.insert(n, n = new InsnNode(DUP));
-						m.instructions.insert(n, n = new MethodInsnNode(INVOKEVIRTUAL, "java/lang/Throwable", "getStackTrace", "()[Ljava/lang/StackTraceElement;", false));
-						m.instructions.insert(n, n = new InsnNode(ARRAYLENGTH));
-						m.instructions.insert(n, n = new TypeInsnNode(NEW, "java/lang/Throwable"));
-						m.instructions.insert(n, n = new InsnNode(DUP));
-						m.instructions.insert(n, n = new MethodInsnNode(INVOKESPECIAL, "java/lang/Throwable", "<init>", "()V", false));
-						m.instructions.insert(n, n = new MethodInsnNode(INVOKEVIRTUAL, "java/lang/Throwable", "getStackTrace", "()[Ljava/lang/StackTraceElement;", false));
-						m.instructions.insert(n, n = new InsnNode(ARRAYLENGTH));
-						m.instructions.insert(n, n = new JumpInsnNode(IF_ICMPLE, lCond));
-						m.instructions.insert(n, n = new TypeInsnNode(NEW, "java/lang/Error"));
-						m.instructions.insert(n, n = new InsnNode(DUP));
-						m.instructions.insert(n, n = new LdcInsnNode("Detected bad stack depth call to endSection"));
-						m.instructions.insert(n, n = new MethodInsnNode(INVOKESPECIAL, "java/lang/Error", "<init>", "(Ljava/lang/String;)V", false));
-						m.instructions.insert(n, n = new InsnNode(SWAP));
-						m.instructions.insert(n, n = new MethodInsnNode(INVOKEVIRTUAL, "java/lang/Throwable", "initCause", "(Ljava/lang/Throwable;)Ljava/lang/Throwable;", false));
-						m.instructions.insert(n, n = new InsnNode(ATHROW));
-						m.instructions.insert(n, n = new FrameNode(F_SAME1, 0, null, 0, new Object[] { "java/lang/Throwable" }));
-						m.instructions.insert(n, n = lCond);
-						m.instructions.insert(n, n = new InsnNode(POP));
-						m.instructions.insert(n, n = new FrameNode(F_SAME, 0, null, 0, null));
-						m.instructions.insert(n, n = lGuard);
-						break;
-					}
-				}
-			} else if (names[1].equals(m.name) || "func_194340_a".equals(m.name)) {
-				int c = 0;
-				for (AbstractInsnNode n = m.instructions.getFirst(); n != null; n = n.getNext()) {
-					if (n.getOpcode() == ALOAD && ++c > 1) {
-						LabelNode lGuard = new LabelNode(new Label());
-						m.instructions.insertBefore(n, n = new VarInsnNode(ALOAD, 0));
-						m.instructions.insert(n, n = new FieldInsnNode(GETFIELD, name, "cofh_endStart", "Z"));
-						m.instructions.insert(n, n = new JumpInsnNode(IFNE, lGuard));
-						m.instructions.insert(n, n = new VarInsnNode(ALOAD, 0));
-						m.instructions.insert(n, n = new FieldInsnNode(GETFIELD, name, "cofh_stack", "Ljava/util/Deque;"));
-						m.instructions.insert(n, n = new TypeInsnNode(NEW, "java/lang/Error"));
-						m.instructions.insert(n, n = new InsnNode(DUP));
-						m.instructions.insert(n, n = new LdcInsnNode("Failed to call endSection after calling startSection"));
-						m.instructions.insert(n, n = new MethodInsnNode(INVOKESPECIAL, "java/lang/Error", "<init>", "(Ljava/lang/String;)V", false));
-						m.instructions.insert(n, n = new MethodInsnNode(INVOKEVIRTUAL, "java/lang/Throwable", "fillInStackTrace", "()Ljava/lang/Throwable;", false));
-						m.instructions.insert(n, n = new MethodInsnNode(INVOKEINTERFACE, "java/util/Deque", "push", "(Ljava/lang/Object;)V", true));
-						m.instructions.insert(n, n = new FrameNode(F_SAME, 0, null, 0, null));
-						m.instructions.insert(n, n = lGuard);
-						break;
-					}
-				}
-			} else if (names[2].equals(m.name) || "func_194339_b".equals(m.name)) {
-				AbstractInsnNode n;
-				for (n = m.instructions.getLast(); n != null; n = n.getPrevious()) {
-					if (n.getOpcode() == RETURN) {
-						m.instructions.insertBefore(n, n = new VarInsnNode(ALOAD, 0));
-						m.instructions.insert(n, n = new InsnNode(ICONST_0));
-						m.instructions.insert(n, n = new FieldInsnNode(PUTFIELD, name, "cofh_endStart", "Z"));
-						break;
-					}
-				}
-
-				m.instructions.insertBefore(m.instructions.getFirst(), n = new VarInsnNode(ALOAD, 0));
-				m.instructions.insert(n, n = new InsnNode(ICONST_1));
-				m.instructions.insert(n, n = new FieldInsnNode(PUTFIELD, name, "cofh_endStart", "Z"));
-			} else if (names[3].equals(m.name)) {
-				AbstractInsnNode n;
-				m.instructions.insertBefore(m.instructions.getFirst(), n = new VarInsnNode(ALOAD, 0));
-				m.instructions.insert(n, n = new FieldInsnNode(GETFIELD, name, "cofh_stack", "Ljava/util/Deque;"));
-				m.instructions.insert(n, n = new MethodInsnNode(INVOKEINTERFACE, "java/util/Deque", "clear", "()V", true));
-			}
-		}
-
-		ClassWriter cw = new ClassWriter(ClassWriter.COMPUTE_FRAMES);
-		cn.accept(cw);
-		bytes = cw.toByteArray();
-
-		saveTransformedClass(bytes, name);
-
-		return bytes;
-	}
+	static final String serverSig = "(L" + worldServer + ";)V";
+	static final String worldSig = "(L" + world + ";)V";
 
 	@Override
 	public byte[] transform(String name, String transformedName, byte[] basicClass) {
-
-		switch (transformerMap.getInt(transformedName)) {
-			case 1:
+		switch (transformedName) {
+			case "net.minecraft.world.WorldServer":
 				return modifyWorldServer(basicClass);
-			case 2:
+			case "net.minecraft.world.World":
 				return modifyWorld(basicClass);
-			case 3:
+			case "powercrystals.minefactoryreloaded.asmhooks.WorldServerProxy":
 				return modifyWorldServerProxy(basicClass);
-			case 22:
-				//return alterProfiler(transformedName, basicClass, new ClassReader(basicClass));
-			case 0:
 			default:
-				break;
-		}
-		return basicClass;
-	}
-
-	private static void makeAllPublic(ClassNode cn) {
-
-		for (MethodNode a : cn.methods) {
-			a.access = (a.access & ~(ACC_PRIVATE | ACC_PROTECTED | ACC_FINAL)) | ACC_PUBLIC;
-			// tweak access, but do not tweak calls: internal private calls remain calls to the method on the given class, and not a subclass
-			// this catches reflection calls out, but leaves code calls unmolested
+				return basicClass;
 		}
 	}
 
@@ -225,8 +42,9 @@ public class WorldTransformer implements IClassTransformer {
 		addConstructor:
 		{
 			for (MethodNode method : cn.methods) {
-				if ("<init>".equals(method.name) && worldSig.equals(method.desc))
+				if ("<init>".equals(method.name) && worldSig.equals(method.desc)) {
 					break addConstructor; // someone has created it for us
+				}
 			}
 
 			MethodVisitor mv = cn.visitMethod(ACC_PUBLIC | ACC_SYNTHETIC, "<init>", worldSig, null, null);
@@ -249,8 +67,9 @@ public class WorldTransformer implements IClassTransformer {
 		addUpdate:
 		{
 			for (MethodNode method : cn.methods) {
-				if ("cofh_updatePropsInternal".equals(method.name) && worldSig.equals(method.desc))
+				if ("cofh_updatePropsInternal".equals(method.name) && worldSig.equals(method.desc)) {
 					break addUpdate; // someone has created it for us
+				}
 			}
 
 			MethodVisitor mv = cn.visitMethod(ACC_PUBLIC | ACC_SYNTHETIC, "cofh_updatePropsInternal", worldSig, null, null);
@@ -285,8 +104,9 @@ public class WorldTransformer implements IClassTransformer {
 		addConstructor:
 		{
 			for (MethodNode method : cn.methods) {
-				if ("<init>".equals(method.name) && serverSig.equals(method.desc))
+				if ("<init>".equals(method.name) && serverSig.equals(method.desc)) {
 					break addConstructor; // someone has created it for us
+				}
 			}
 
 			MethodVisitor mv = cn.visitMethod(ACC_PUBLIC | ACC_SYNTHETIC, "<init>", serverSig, null, null);
@@ -375,7 +195,6 @@ public class WorldTransformer implements IClassTransformer {
 		for (Method m : worldServerMethods) {
 			if (!Modifier.isStatic(m.getModifiers())) {
 				String desc = Type.getMethodDescriptor(m);
-				boolean skip = false;
 				if (cn.methods.stream().anyMatch(m2 -> m2.name.equals(m.getName()) && m2.desc.equals(desc))) {
 					continue;
 				}
@@ -425,18 +244,23 @@ public class WorldTransformer implements IClassTransformer {
 		return bytes;
 	}
 
-	private static boolean isFinal(int access) {
+	private static void makeAllPublic(ClassNode cn) {
+		for (MethodNode a : cn.methods) {
+			a.access = (a.access & ~(ACC_PRIVATE | ACC_PROTECTED | ACC_FINAL)) | ACC_PUBLIC;
+			// tweak access, but do not tweak calls: internal private calls remain calls to the method on the given class, and not a subclass
+			// this catches reflection calls out, but leaves code calls unmolested
+		}
+	}
 
+	private static boolean isFinal(int access) {
 		return 0 != (access & ACC_FINAL) && 0 == (access & ACC_STATIC);
 	}
 
 	private static boolean isInstance(int access) {
-
 		return 0 == (access & ACC_FINAL) && 0 == (access & ACC_STATIC);
 	}
 
 	private static int getAccess(Method m) {
-
 		int r = m.getModifiers();
 		r &= ~(ACC_PUBLIC | ACC_PRIVATE | ACC_PROTECTED | ACC_FINAL | ACC_BRIDGE | ACC_ABSTRACT);
 		r |= ACC_PUBLIC | ACC_SYNTHETIC;
@@ -444,11 +268,7 @@ public class WorldTransformer implements IClassTransformer {
 	}
 
 	private static String[] getExceptions(Method m) {
-
 		Class<?>[] d = m.getExceptionTypes();
-		if (d == null) {
-			return null;
-		}
 		String[] r = new String[d.length];
 		for (int i = 0; i < d.length; ++i) {
 			r[i] = Type.getInternalName(d[i]);
