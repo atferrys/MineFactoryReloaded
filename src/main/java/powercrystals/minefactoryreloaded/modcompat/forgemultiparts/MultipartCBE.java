@@ -30,35 +30,28 @@ public class MultipartCBE implements IMFRIntegrator {
 	public static final Item factoryRoadBlock = Items.AIR;
 	@GameRegistry.ObjectHolder(value = MFR + ":rubber_wood_log")
 	public static final Item rubberWoodBlock = Items.AIR;
-	@GameRegistry.ObjectHolder(value = MFR + ":machine_0")
-	public static final Item machine_0 = Items.AIR;
-	@GameRegistry.ObjectHolder(value = MFR + ":machine_1")
-	public static final Item machine_1 = Items.AIR;
-	@GameRegistry.ObjectHolder(value = MFR + ":machine_2")
-	public static final Item machine_2 = Items.AIR;
 
 	public void load() {
-
 		addSubtypes(factoryDecorativeBrickBlock);
 		addSubtypes(factoryDecorativeStoneBlock);
 		addSubtypes(factoryGlassBlock);
 		addSubtypes(factoryRoadBlock);
-		for (Item block : new Item[] {machine_0, machine_1, machine_2})
-			addSubtypes(block);
 		addSubtypes(rubberLeavesBlock);
-		sendComm(stack(rubberWoodBlock, 1, 0));
+		registerBlock(stack(rubberWoodBlock, 1, 0));
 	}
 
 	private void addSubtypes(Item item) {
 
 		NonNullList<ItemStack> items = NonNullList.create();
 		item.getSubItems(CreativeTabs.SEARCH, items);
-		for (int i = items.size(); i-- > 0; )
-			sendComm(items.get(i));
+
+		for(int i = items.size(); i-- > 0;) {
+			registerBlock(items.get(i));
+		}
+
 	}
 
-	private void sendComm(@Nonnull ItemStack data) {
-
+	private void registerBlock(ItemStack data) {
 		FMLInterModComms.sendMessage(MULTIPARTCBE, "microMaterial", data);
 	}
 
