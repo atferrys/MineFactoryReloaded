@@ -279,7 +279,7 @@ public class TileEntityDeepStorageUnit extends TileEntityFactoryTickable impleme
 		_storedItem = ItemStack.EMPTY;
 
 		if (tag.hasKey("storedStack")) {
-			_storedItem = new ItemStack((NBTTagCompound) tag.getTag("storedStack"));
+			_storedItem = new ItemStack(tag.getCompoundTag("storedStack"));
 			if (!_storedItem.isEmpty()) {
 				_storedItem.setCount(1);
 				setIsActive(tag.getBoolean("locked"));
