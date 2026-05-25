@@ -51,6 +51,7 @@ public class TileEntityHarvester extends TileEntityFactoryPowered {
 		_settings.put(SettingNames.SHEARS_MODE, BooleanSetting.FALSE);
 		_settings.put(SettingNames.HARVEST_SMALL_MUSHROOMS, BooleanSetting.FALSE);
 		_settings.put(SettingNames.PLAY_SOUNDS, (BooleanSetting) MFRConfig.playSounds::getBoolean);
+		_settings.put(SettingNames.HARVESTING_TREE, BooleanSetting.FALSE);
 		DEFAULT_SETTINGS = Collections.unmodifiableMap(_settings);
 	}
 
@@ -69,7 +70,6 @@ public class TileEntityHarvester extends TileEntityFactoryPowered {
 
 		_settings = new HashMap<>();
 		_settings.putAll(DEFAULT_SETTINGS);
-		_settings.put(SettingNames.HARVESTING_TREE, (BooleanSetting) () -> !_treeManager.getIsDone());
 		_immutableSettings = new FactorySettings(_settings);
 
 		_rand = new Random();
@@ -345,7 +345,7 @@ public class TileEntityHarvester extends TileEntityFactoryPowered {
 	@Override
 	public void readPortableData(EntityPlayer player, NBTTagCompound tag) {
 
-		NBTTagCompound list = (NBTTagCompound) tag.getTag("harvesterSettings");
+		NBTTagCompound list = tag.getCompoundTag("harvesterSettings");
 		DEFAULT_SETTINGS.forEach((key, value) -> {
 			if (!SettingNames.PLAY_SOUNDS.equals(key) && list.hasKey(key, NBT.TAG_BYTE)) {
 				boolean b = list.getBoolean(key);
@@ -382,9 +382,9 @@ public class TileEntityHarvester extends TileEntityFactoryPowered {
 	public void readFromNBT(NBTTagCompound tag) {
 
 		super.readFromNBT(tag);
-		NBTTagCompound list = (NBTTagCompound) tag.getTag("harvesterSettings");
+		NBTTagCompound list = tag.getCompoundTag("harvesterSettings");
 		DEFAULT_SETTINGS.forEach((key, value) -> {
-			if (!SettingNames.PLAY_SOUNDS.equals(key)) {
+			if (!SettingNames.PLAY_SOUNDS.equals(key) && list.hasKey(key, NBT.TAG_BYTE)) {
 				boolean b = list.getBoolean(key);
 				_settings.put(key, b ? BooleanSetting.TRUE : BooleanSetting.FALSE);
 			}

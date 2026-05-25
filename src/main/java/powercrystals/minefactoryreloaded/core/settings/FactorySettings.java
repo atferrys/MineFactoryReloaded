@@ -12,7 +12,7 @@ import static powercrystals.minefactoryreloaded.api.util.IFactorySettings.Settin
 
 public class FactorySettings implements IFactorySettings, ISetting {
 
-	private static final Function<ISetting, BooleanSetting> BOOLS = (a) -> a == null ? BooleanSetting.FALSE : BooleanSetting.TRUE;
+	private static final Function<ISetting, BooleanSetting> BOOLS = (a) -> BooleanSetting.FALSE;
 	private static final Function<ISetting, IntSetting> INTS = (a) -> IntSetting.NULL;
 	private static final Function<ISetting, LongSetting> LONGS = (a) -> LongSetting.NULL;
 	private static final Function<ISetting, DoubleSetting> DOUBLES = (a) -> DoubleSetting.NULL;
@@ -39,7 +39,7 @@ public class FactorySettings implements IFactorySettings, ISetting {
 		}
 		return UUIDSetting.NULL;
 	};
-	private static final Function<ISetting, ListSetting> LISTS = (a) -> ListSetting.NULL;
+	private static final Function<ISetting, ListSetting<?>> LISTS = (a) -> ListSetting.NULL;
 	private static final Function<ISetting, Vec3Setting> VEC3S = (a) -> Vec3Setting.NULL;
 	private static final Function<ISetting, FactorySettings> SETTINGS = (a) -> null;
 
@@ -111,7 +111,7 @@ public class FactorySettings implements IFactorySettings, ISetting {
 	@SuppressWarnings("unchecked")
 	public <T> List<T> getList(String key) {
 
-		return getOr(VEC3, key, LISTS).getAsList();
+		return (List<T>) getOr(LIST, key, LISTS).getAsList();
 	}
 
 	@Override

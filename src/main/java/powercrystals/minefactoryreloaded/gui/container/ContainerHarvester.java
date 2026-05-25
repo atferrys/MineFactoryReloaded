@@ -52,7 +52,7 @@ public class ContainerHarvester extends ContainerUpgradeable {
 
 	private void setSetting(String setting, int value) {
 
-		((TileEntityHarvester) _te).getSettings().put(setting, value == 0 ? BooleanSetting.TRUE : BooleanSetting.FALSE);
+		((TileEntityHarvester) _te).getSettings().put(setting, value == 0 ? BooleanSetting.FALSE : BooleanSetting.TRUE);
 	}
 
 }
