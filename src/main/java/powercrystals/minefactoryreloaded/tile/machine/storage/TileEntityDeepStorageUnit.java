@@ -368,21 +368,34 @@ public class TileEntityDeepStorageUnit extends TileEntityFactoryTickable impleme
 		return capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY || super.hasCapability(capability, facing);
 	}
 
+	private final InvWrapper itemHandler = new InvWrapper(this) {
+
+		@Nonnull
+		@Override
+		public ItemStack getStackInSlot(int slot) {
+
+			if(slot < 2) {
+				return super.getStackInSlot(slot);
+			}
+
+			ItemStack stack = getStoredItemType();
+			stack.setCount(_inventory.get(2).getCount() + getQuantity());
+
+			return stack;
+
+		}
+
+	};
+
 	@Override
 	public <T> T getCapability(Capability<T> capability, EnumFacing facing) {
 
-		if (capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
-			return CapabilityItemHandler.ITEM_HANDLER_CAPABILITY.cast(new InvWrapper(this) {
-
-				@Nonnull
-				@Override
-				public ItemStack getStackInSlot(int slot) {
-
-					return slot < 2 ? super.getStackInSlot(slot) : getStoredItemType();
-				}
-			});
+		if(capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
+			return CapabilityItemHandler.ITEM_HANDLER_CAPABILITY.cast(itemHandler);
 		}
 
 		return super.getCapability(capability, facing);
+
 	}
+
 }
