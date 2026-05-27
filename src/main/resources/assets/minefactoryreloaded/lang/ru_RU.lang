@@ -119,8 +119,8 @@ tile.mfr.decorative.brick.lapis.large.name=Большие лазуритовые
 tile.mfr.decorative.brick.obsidian.large.name=Большие обсидиановые кирпичи
 tile.mfr.decorative.brick.pavedstone.large.name=Большие мощённые каменные кирпичи
 tile.mfr.decorative.brick.snow.large.name=Большие снежные кирпичи
-tile.mfr.decorative.brick.meatraw.name=Блок сырого мяса
-tile.mfr.decorative.brick.meatcooked.name=Блок приготовленного мяса
+tile.mfr.decorative.brick.meat.raw.name=Блок сырого мяса
+tile.mfr.decorative.brick.meat.cooked.name=Блок приготовленного мяса
 tile.mfr.decorative.brick.brick.large.name=Большие кирпичи
 tile.mfr.decorative.brick.sugar_charcoal.name=Сахарный древесноугольный блок
 

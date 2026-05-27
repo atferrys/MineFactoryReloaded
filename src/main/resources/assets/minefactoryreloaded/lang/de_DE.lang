@@ -119,8 +119,8 @@ tile.mfr.decorative.brick.lapis.large.name=Großer Lapislazuliziegel
 tile.mfr.decorative.brick.obsidian.large.name=Großer Obsidianziegel
 tile.mfr.decorative.brick.pavedstone.large.name=Große Gepflasterte Steinziegel
 tile.mfr.decorative.brick.snow.large.name=Großer Schneeziegel
-tile.mfr.decorative.brick.meatraw.name=Roher Fleischblock
-tile.mfr.decorative.brick.meatcooked.name=Gekochter Fleischblock
+tile.mfr.decorative.brick.meat.raw.name=Roher Fleischblock
+tile.mfr.decorative.brick.meat.cooked.name=Gekochter Fleischblock
 tile.mfr.decorative.brick.brick.large.name=Große Ziegel
 tile.mfr.decorative.brick.sugar_charcoal.name=Zuckerkohleblock
 

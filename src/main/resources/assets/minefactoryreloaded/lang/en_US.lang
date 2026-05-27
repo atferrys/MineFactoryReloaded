@@ -125,8 +125,8 @@ tile.mfr.decorative.brick.lapis.large.name=Large Lapis Bricks
 tile.mfr.decorative.brick.obsidian.large.name=Large Obsidian Bricks
 tile.mfr.decorative.brick.pavedstone.large.name=Large Paved Stone Bricks
 tile.mfr.decorative.brick.snow.large.name=Large Snow Bricks
-tile.mfr.decorative.brick.meatraw.name=Raw Meat Block
-tile.mfr.decorative.brick.meatcooked.name=Cooked Meat Block
+tile.mfr.decorative.brick.meat.raw.name=Raw Meat Block
+tile.mfr.decorative.brick.meat.cooked.name=Cooked Meat Block
 tile.mfr.decorative.brick.brick.large.name=Large Bricks
 tile.mfr.decorative.brick.sugar_charcoal.name=Sugar Charcoal Block
 
