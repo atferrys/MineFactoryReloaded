@@ -24,8 +24,10 @@ import java.util.Random;
 public class Zoologist {
 
 	public static final VillagerProfession zoologistProfession = new VillagerProfession(
-			MFRProps.PREFIX + "zoologist", MFRProps.VILLAGER_FOLDER + "zoologist.png",
-			"minecraft:/textures/entity/zombie_villager/zombie_villager.png");
+			MFRProps.PREFIX + "zoologist",
+			MFRProps.VILLAGER_FOLDER + "zoologist.png",
+			"minecraft:textures/entity/zombie_villager/zombie_villager.png"
+	);
 
 	public static void init() {
 
