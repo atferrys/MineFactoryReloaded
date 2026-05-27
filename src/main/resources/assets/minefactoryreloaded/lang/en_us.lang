@@ -201,14 +201,6 @@ entity.mfr.pink_slime.name=Pink Slime
 entity.mfr.debug_tracker.name=Debug Tracker
 
 item.mfr.bucket.milk.name=Milk Bucket
-item.mfr.bucket.sewage.name=Sewage Bucket
-item.mfr.bucket.sludge.name=Sludge Bucket
-item.mfr.bucket.essence.name=Essence Bucket
-item.mfr.bucket.biofuel.name=BioFuel Bucket
-item.mfr.bucket.meat.name=Meat Bucket
-item.mfr.bucket.pink_slime.name=Pink Slime Bucket
-item.mfr.bucket.chocolatemilk.name=Chocolate Milk Bucket
-item.mfr.bucket.mushroomsoup.name=Mushroom Soup Bucket
 
 item.mfr.plastic.cup.name=Plastic Cup
 item.mfr.plastic.cup.prefix.name=

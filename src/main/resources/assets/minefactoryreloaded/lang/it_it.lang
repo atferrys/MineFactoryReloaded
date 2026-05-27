@@ -188,14 +188,6 @@ fluid.mfr.steam.name=Vapore
 entity.mfr.pink_slime.name=Gelatina rosa
 
 item.mfr.bucket.milk.name=Secchio di latte
-item.mfr.bucket.sewage.name=Secchio di melma
-item.mfr.bucket.sludge.name=Secchio di escrementi
-item.mfr.bucket.essence.name=Secchio di essenza
-item.mfr.bucket.biofuel.name=Secchio di combustibile biologico
-item.mfr.bucket.meat.name=Secchio di carne
-item.mfr.bucket.pink_slime.name=Secchio di gelatina rosa
-item.mfr.bucket.chocolatemilk.name=Secchio di latte al cioccolato
-item.mfr.bucket.mushroomsoup.name=Secchio di zuppa di funghi
 
 item.mfr.plastic.cup.name=Bicchiere di plastica
 item.mfr.plastic.cup.prefix.name=Bicchiere di

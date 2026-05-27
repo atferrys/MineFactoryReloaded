@@ -188,14 +188,6 @@ fluid.mfr.steam.name=Vapor
 entity.mfr.pink_slime.name=Gosma Rosa
 
 item.mfr.bucket.milk.name=Balde de Leite
-item.mfr.bucket.sewage.name=Balde de Esgoto
-item.mfr.bucket.sludge.name=Balde de Lodo
-item.mfr.bucket.essence.name=Balde de Essência
-item.mfr.bucket.biofuel.name=Balde de Bio-Combustível
-item.mfr.bucket.meat.name=Balde de Carne
-item.mfr.bucket.pink_slime.name=Balde de Gosma Rosa
-item.mfr.bucket.chocolatemilk.name=Balde de Leite com Chocolate
-item.mfr.bucket.mushroomsoup.name=Balde de Sopa de Cogumelo
 
 item.mfr.plastic.cup.name=Copo de Plástico
 item.mfr.plastic.cup.prefix.name=

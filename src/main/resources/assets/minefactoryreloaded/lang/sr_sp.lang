@@ -155,14 +155,6 @@ fluid.mfr.chocolate_milk.name=Čokoladno Mleko
 fluid.mfr.mushroom_soup.name=Čorba od Pečuraka
 
 item.mfr.bucket.milk.name=Kofa Mleka
-item.mfr.bucket.sewage.name=Kofa Mulja
-item.mfr.bucket.sludge.name=Kofa Izmeta
-item.mfr.bucket.essence.name=Kofa Essencije
-item.mfr.bucket.biofuel.name=Kofa BioGoriva
-item.mfr.bucket.meat.name=Kofa Mesa
-item.mfr.bucket.pink_slime.name=Kofa Roze Gliba
-item.mfr.bucket.chocolatemilk.name=Kofa Čokoladnog Mleka
-item.mfr.bucket.mushroomsoup.name=Kofa Čorbe od Pečuraka
 
 item.mfr.hammer.name=Precizni Čekić
 item.mfr.fertilizer.name=Industrisko Đubrivo

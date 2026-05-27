@@ -188,14 +188,6 @@ fluid.mfr.steam.name=Dampf
 entity.mfr.pink_slime.name=Rosa Schleim
 
 item.mfr.bucket.milk.name=Milcheimer
-item.mfr.bucket.sewage.name=Gülleeimer
-item.mfr.bucket.sludge.name=Schlackeeimer
-item.mfr.bucket.essence.name=Eimer mit Monsteressenz
-item.mfr.bucket.biofuel.name=Eimer mit Biodiesel
-item.mfr.bucket.meat.name=Eimer mit Fleischmasse
-item.mfr.bucket.pink_slime.name=Eimer mit rosa Schleim
-item.mfr.bucket.chocolatemilk.name=Eimer mit Kakao
-item.mfr.bucket.mushroomsoup.name=Eimer mit Pilzsuppe
 
 item.mfr.plastic.cup.name=Plastikbecher
 item.mfr.plastic.cup.prefix.name=Becher mit

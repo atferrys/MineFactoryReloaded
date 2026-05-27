@@ -188,14 +188,6 @@ fluid.mfr.steam.name=Pára
 entity.mfr.pink_slime.name=Růžový sliz
 
 item.mfr.bucket.milk.name=Kbelík mléka
-item.mfr.bucket.sewage.name=Kbelík splašků
-item.mfr.bucket.sludge.name=Kbelík kalu
-item.mfr.bucket.essence.name=Kbelík esence
-item.mfr.bucket.biofuel.name=Kbelík biopaliva
-item.mfr.bucket.meat.name=Kbelík masa
-item.mfr.bucket.pink_slime.name=Kbelík růžového slizu
-item.mfr.bucket.chocolatemilk.name=Kbelík čokoládového mléka
-item.mfr.bucket.mushroomsoup.name=Kbelík houbové polévky
 
 item.mfr.plastic.cup.name=Plastový šálek
 item.mfr.plastic.cup.prefix.name=

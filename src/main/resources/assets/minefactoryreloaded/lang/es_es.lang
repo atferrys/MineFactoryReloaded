@@ -155,14 +155,6 @@ fluid.mfr.chocolate_milk.name=Leche Chocolatada
 fluid.mfr.mushroom_soup.name=Sopa de Setas
 
 item.mfr.bucket.milk.name=Balde con Leche
-item.mfr.bucket.sewage.name=Balde con Aguas Residuales
-item.mfr.bucket.sludge.name=Balde con Barro
-item.mfr.bucket.essence.name=Balde con Esencia de Criatura
-item.mfr.bucket.biofuel.name=Balde con BioCombustible
-item.mfr.bucket.meat.name=Balde con Carne
-item.mfr.bucket.pink_slime.name=Balde con Limo Rosa
-item.mfr.bucket.chocolatemilk.name=Balde con Leche Chocolatada
-item.mfr.bucket.mushroomsoup.name=Balde con Sopa de Setas
 
 item.mfr.hammer.name=Mazo de Precisión
 item.mfr.fertilizer.name=Fertilizador Industrial

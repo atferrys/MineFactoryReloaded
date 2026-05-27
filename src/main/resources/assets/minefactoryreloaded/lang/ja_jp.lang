@@ -188,14 +188,6 @@ fluid.mfr.steam.name=スチーム
 entity.mfr.pink_slime.name=ピンクスライム
 
 item.mfr.bucket.milk.name=牛乳入りバケツ
-item.mfr.bucket.sewage.name=汚水入りバケツ
-item.mfr.bucket.sludge.name=汚泥入りバケツ
-item.mfr.bucket.essence.name=モブエッセンス入りバケツ
-item.mfr.bucket.biofuel.name=バイオ燃料入りバケツ
-item.mfr.bucket.meat.name=肉入りバケツ
-item.mfr.bucket.pink_slime.name=ピンクスライム入りバケツ
-item.mfr.bucket.chocolatemilk.name=チョコレート牛乳入りバケツ
-item.mfr.bucket.mushroomsoup.name=キノコシチュー入りバケツ
 
 item.mfr.plastic.cup.name=ポリカップ
 item.mfr.plastic.cup.prefix.name =

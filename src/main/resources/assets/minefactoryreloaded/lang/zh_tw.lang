@@ -192,14 +192,6 @@ fluid.mfr.steam.name=蒸氣
 entity.mfr.pink_slime.name=粉紅史萊姆
 
 item.mfr.bucket.milk.name=牛奶桶
-item.mfr.bucket.sewage.name=污水桶
-item.mfr.bucket.sludge.name=污泥桶
-item.mfr.bucket.essence.name=怪物精華液桶
-item.mfr.bucket.biofuel.name=生物燃油桶
-item.mfr.bucket.meat.name=肉湯桶
-item.mfr.bucket.pink_slime.name=粉色粘液桶
-item.mfr.bucket.chocolatemilk.name=巧克力牛奶桶
-item.mfr.bucket.mushroomsoup.name=蘑菇湯桶
 
 item.mfr.plastic.cup.name=塑膠杯
 item.mfr.plastic.cup.prefix.name=

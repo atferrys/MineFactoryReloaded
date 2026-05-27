@@ -157,14 +157,6 @@ fluid.mfr.mushroom_soup.name=버섯 수프
 entity.mfr.pink_slime.name=분홍 슬라임
 
 item.mfr.bucket.milk.name=우유 양동이
-item.mfr.bucket.sewage.name=하수 양동이
-item.mfr.bucket.sludge.name=찌꺼기 양동이
-item.mfr.bucket.essence.name=몹 에센스 양동이
-item.mfr.bucket.biofuel.name=바이오 연료 양동이
-item.mfr.bucket.meat.name=고기 양동이
-item.mfr.bucket.pink_slime.name=분홍 슬라임 양동이
-item.mfr.bucket.chocolatemilk.name=초콜릿 우유 양동이
-item.mfr.bucket.mushroomsoup.name=버섯 수프 양동이
 
 item.mfr.plastic.cup.name=플라스틱 컵
 item.mfr.plastic.cup.prefix.name=

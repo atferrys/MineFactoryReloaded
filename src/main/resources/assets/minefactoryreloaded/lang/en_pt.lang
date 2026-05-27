@@ -126,14 +126,6 @@ fluid.mfr.steam.name=Steam
 entity.mfr.pink_slime.name=Cube o' Pink Slime
 
 item.mfr.bucket.milk.name=Pail o' Cow's Juice
-item.mfr.bucket.sewage.name=Pail o' Poop
-item.mfr.bucket.sludge.name=Pail o' Sludge
-item.mfr.bucket.essence.name=Bucket o' Elder Rum
-item.mfr.bucket.biofuel.name=Bucket o' PlantFuel
-item.mfr.bucket.meat.name=Pail o' Meat
-item.mfr.bucket.pink_slime.name=Pail o' Pink Slime
-item.mfr.bucket.chocolatemilk.name=Pail o' Chocolate Cow's Juice
-item.mfr.bucket.mushroomsoup.name=Bucket o' 'Shroom Goulash
 
 item.mfr.plastic.cup.name=Cup
 item.mfr.plastic.cup.prefix.name=Cup o' 
