@@ -1,6 +1,7 @@
 package powercrystals.minefactoryreloaded.setup.village;
 
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.gen.structure.StructureComponent;
 import net.minecraftforge.fml.common.registry.VillagerRegistry.IVillageCreationHandler;
 
@@ -17,7 +18,7 @@ public class VillageCreationHandler implements IVillageCreationHandler
 	@Override
 	public PieceWeight getVillagePieceWeight(Random random, int i)
 	{
-		return new PieceWeight(ComponentZoologistHouse.class, 20, random.nextInt(1) + i);
+		return new PieceWeight(ComponentZoologistHouse.class, 20, MathHelper.getInt(random, i, 1 + i));
 	}
 	
 	@Override
