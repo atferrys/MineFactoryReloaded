@@ -185,7 +185,7 @@ fluid.mfr.chocolate_milk.name=チョコレート牛乳
 fluid.mfr.mushroom_soup.name=キノコシチュー
 fluid.mfr.steam.name=スチーム
 
-entity.MineFactoryReloaded.mfrEntityPinkSlime.name=ピンクスライム
+entity.mfr.pink_slime.name=ピンクスライム
 
 item.mfr.bucket.milk.name=牛乳入りバケツ
 item.mfr.bucket.sewage.name=汚水入りバケツ

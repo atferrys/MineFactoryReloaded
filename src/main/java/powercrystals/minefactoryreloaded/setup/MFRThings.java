@@ -324,7 +324,7 @@ public class MFRThings {
 		rocketItem = new ItemRocket();
 
 		EntityRegistry
-				.registerModEntity(new ResourceLocation(MFRProps.MOD_ID, "pink_slime"), EntityPinkSlime.class, "mfrEntityPinkSlime", 1, MineFactoryReloadedCore.instance(), 160, 5,
+				.registerModEntity(new ResourceLocation(MFRProps.MOD_ID, "pink_slime"), EntityPinkSlime.class, "mfr.pink_slime", 1, MineFactoryReloadedCore.instance(), 160, 5,
 						true);
 		LootTableList.register(EntityPinkSlime.PINK_SLIME);
 

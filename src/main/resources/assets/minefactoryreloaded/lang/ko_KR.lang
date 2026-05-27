@@ -154,7 +154,7 @@ fluid.mfr.pink_slime.name=분홍 슬라임
 fluid.mfr.chocolate_milk.name=초콜릿 우유
 fluid.mfr.mushroom_soup.name=버섯 수프
 
-entity.MineFactoryReloaded.mfrEntityPinkSlime.name=분홍 슬라임
+entity.mfr.pink_slime.name=분홍 슬라임
 
 item.mfr.bucket.milk.name=우유 양동이
 item.mfr.bucket.sewage.name=하수 양동이
