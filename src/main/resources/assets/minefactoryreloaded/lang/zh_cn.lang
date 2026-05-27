@@ -153,12 +153,12 @@ tile.mfr.detcord.name=引爆线圈
 
 tile.mfr.farmland.name=沃土
 
-tile.mfr.rubber_wood.sapling.name=橡胶树树苗
+tile.mfr.rubber_wood.sapling.normal.name=橡胶树树苗
 tile.mfr.rubber_wood.sapling.sacred.name=神圣橡胶树树苗
 tile.mfr.rubber_wood.sapling.mega.name=宏伟橡胶树树苗
 tile.mfr.rubber_wood.sapling.massive.name=神圣橡胶树树苗
 tile.mfr.rubber_wood.log.name=橡胶木
-tile.mfr.rubber_wood.leaves.name=橡胶树叶
+tile.mfr.rubber_wood.leaves.normal.name=橡胶树叶
 tile.mfr.rubber_wood.leaves.dry.name=干枯橡胶树叶
 
 tile.mfr.rail.cargo.dropoff.name=货运卸载轨道
@@ -175,7 +175,7 @@ tile.mfr.plastic.pipe.name=塑料管道
 tile.mfr.rednet.logic.name=可编程红石控制器
 tile.mfr.rednet.panel.historian.name=波形记录器
 
-tile.mfr.machineblock=item.mfr.machineblock
+tile.mfr.machine_block.base.name=工厂机械块
 tile.mfr.machine_block.prc.name=可编程红石网络控制器外壳
 
 tile.mfr.tank.name=塑料水槽
@@ -218,7 +218,6 @@ item.mfr.syringe.health.name=治愈药水注射器
 item.mfr.syringe.slime.name=史莱姆增殖素注射器
 item.mfr.syringe.zombie.name=僵尸病毒注射器
 
-item.mfr.machine_block.name=工厂机械块
 item.mfr.hammer.name=精密锻造锤
 
 item.mfr.plastic=塑料

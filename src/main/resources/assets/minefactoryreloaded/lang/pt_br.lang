@@ -169,7 +169,7 @@ tile.mfr.plastic.pipe.name=Tubo de Plástico
 tile.mfr.rednet.logic.name=Controlador Programável de RedNet
 tile.mfr.rednet.panel.historian.name=Historiador RedNet
 
-tile.mfr.machine_block.machine=
+tile.mfr.machine_block.base.name=Bloco de Máquina de Fábrica
 tile.mfr.machine_block.prc.name=Encaixe do Controlador Programável de RedNet
 
 tile.mfr.tank.name=Tanque de Plástico
@@ -210,12 +210,11 @@ item.mfr.syringe.health.name=Seringa de Saúde
 item.mfr.syringe.slime.name=Seringa de Crescimento de Slime
 item.mfr.syringe.zombie.name=Seringa Zumbi
 
-item.mfr.machine_block.name=Bloco de Máquina de Fábrica
 item.mfr.hammer.name=Marreta de Precisão
 item.mfr.plastic.sheet.name=Folhas de Plástico
 item.mfr.plastic.raw.name=Plástico Cru
 item.mfr.plastic.bag.name=Sacola Plástica
-item.mfr.plastic.display=Plástico
+item.mfr.plastic=Plástico
 item.mfr.plastic.ability=Resistente
 item.mfr.rubber.bar.name=Barra de Borracha
 item.mfr.rubber.raw.name=Borracha Crua

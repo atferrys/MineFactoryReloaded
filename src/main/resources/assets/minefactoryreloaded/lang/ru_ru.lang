@@ -169,7 +169,7 @@ tile.mfr.plastic.pipe.name=Пластиковая труба
 tile.mfr.rednet.logic.name=Программируемый RedNet контроллер
 tile.mfr.rednet.panel.historian.name=RedNet гистограф
 
-tile.mfr.machine_block.machine=
+tile.mfr.machine_block.base.name=Фабричный блок механизма
 tile.mfr.machine_block.prc.name=Корпус программируемого RedNet контроллера
 
 tile.mfr.tank.name=Пластиковый резервуар
@@ -210,7 +210,6 @@ item.mfr.syringe.health.name=Шприц здоровья
 item.mfr.syringe.slime.name=Увеличитель слизней
 item.mfr.syringe.zombie.name=Шприц зомби
 
-item.mfr.machine_block.name=Фабричный блок механизма
 item.mfr.hammer.name=Точная кувалда
 
 item.mfr.plastic=Пластик

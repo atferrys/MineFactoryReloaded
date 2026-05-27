@@ -109,7 +109,7 @@ tile.mfr.road.light.on.name=鋪路燈
 tile.mfr.road.light.inverted.off.name=鋪路燈(反相)
 tile.mfr.road.light.inverted.on.name=鋪路燈(反相)
 
-tile.mfr.plastic.name=塑膠磚
+tile.mfr.plastic.block.bricks.name=塑膠磚
 
 tile.mfr.decorative.brick.ice.name=冰磚塊
 tile.mfr.decorative.brick.glowstone.name=螢光磚塊
@@ -151,12 +151,12 @@ tile.mfr.detcord.name=導火線
 
 tile.mfr.farmland.name=肥沃土壤
 
-tile.mfr.rubber_wood.sapling.name=橡膠樹樹苗
+tile.mfr.rubber_wood.sapling.normal.name=橡膠樹樹苗
 tile.mfr.rubber_wood.sapling.sacred.name=神聖橡膠樹樹苗
 tile.mfr.rubber_wood.sapling.mega.name=巨型橡膠樹樹苗
 tile.mfr.rubber_wood.sapling.massive.name=神聖橡膠樹樹苗
 tile.mfr.rubber_wood.log.name=橡膠木
-tile.mfr.rubber_wood.leaves.name=橡膠樹葉
+tile.mfr.rubber_wood.leaves.normal.name=橡膠樹葉
 tile.mfr.rubber_wood.leaves.dry.name=乾枯橡膠樹葉
 
 tile.mfr.rail.cargo.dropoff.name=貨運卸載軌道
@@ -173,7 +173,7 @@ tile.mfr.plastic.pipe.name=塑膠管子
 tile.mfr.rednet.logic.name=可燒錄式 RedNet 控制器
 tile.mfr.rednet.panel.historian.name=RedNet 波形記錄器
 
-tile.mfr.machineblock=item.mfr.machineblock
+tile.mfr.machine_block.base.name=工廠機械方塊
 tile.mfr.machine_block.prc.name=可燒錄式 RedNet 控制器外殼
 
 tile.mfr.tank.name=塑膠水槽
@@ -214,7 +214,6 @@ item.mfr.syringe.health.name=治愈藥水注射器
 item.mfr.syringe.slime.name=史萊姆巨大化激素注射器
 item.mfr.syringe.zombie.name=殭屍病毒注射器
 
-item.mfr.machine_block.name=工廠機械方塊
 item.mfr.hammer.name=精密大錘
 
 item.mfr.plastic=塑膠
@@ -421,9 +420,9 @@ chat.info.mfr.rednet.meter.dustprefix=紅石粉
 chat.info.mfr.rednet.memorycard.uploaded=PRC程式已經從插入PRC的記憶卡載入
 chat.info.mfr.rednet.memorycard.downloaded=PRC程式已經下載到插入PRC的記憶卡載入
 chat.info.mfr.rednet.memorycard.error=PRC元件不足以運行該程序
-chat.info.mfr.rednet.memorycard.error2 =這個PRC正由某人使用
+chat.info.mfr.rednet.memorycard.error2=這個PRC正由某人使用
 
-hat.info.mfr.rednet.tile.standard=設定線纜為標準連接模式
+chat.info.mfr.rednet.tile.standard=設定線纜為標準連接模式
 chat.info.mfr.rednet.tile.cableonly=設定線纜為均與線纜連接模式
 
 chat.info.mfr.rednet.connection.standard=設定線纜為標準連接模式

@@ -147,12 +147,12 @@ tile.mfr.detcord.name=Detonátor
 
 tile.mfr.farmland.name=Úrodná půda
 
-tile.mfr.rubber_wood.sapling.name=Sazenice gumovníku
+tile.mfr.rubber_wood.sapling.normal.name=Sazenice gumovníku
 tile.mfr.rubber_wood.sapling.sacred.name=Sazenice posvátného gumovníku
 tile.mfr.rubber_wood.sapling.mega.name=Sazenice obrovského gumovníku
 tile.mfr.rubber_wood.sapling.massive.name=Sazenice posvátného gumovníku
 tile.mfr.rubber_wood.log.name=Dřevo gumovníku
-tile.mfr.rubber_wood.leaves.name=Listy gumovníku
+tile.mfr.rubber_wood.leaves.normal.name=Listy gumovníku
 tile.mfr.rubber_wood.leaves.dry.name=Suché listy gumovníku
 
 tile.mfr.rail.cargo.dropoff.name=Nákladové vyhazovací koleje
@@ -169,7 +169,7 @@ tile.mfr.plastic.pipe.name=Plastová trubka
 tile.mfr.rednet.logic.name=Programovatelný RedNetový ovladač
 tile.mfr.rednet.panel.historian.name=RedNetový zaznamenávač
 
-tile.mfr.machineblock=Blok stroje
+tile.mfr.machine_block.base.name=Tovární strojový blok
 tile.mfr.machine_block.prc.name=Pouzdro programovatelného RedNet ovladače
 
 tile.mfr.tank.name=Plastová nádrž
@@ -210,7 +210,6 @@ item.mfr.syringe.health.name=Zdravotní stříkačka
 item.mfr.syringe.slime.name=Slizová vzrůstová stříkačka
 item.mfr.syringe.zombie.name=Zombíková stříkačka
 
-item.mfr.machine_block.name=Tovární strojový blok
 item.mfr.hammer.name=Přesná palice
 
 item.mfr.plastic=Plast

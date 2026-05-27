@@ -34,7 +34,7 @@ tile.mfr.machine.meatpacker.name=Fleischverpacker
 tile.mfr.machine.enchantmentrouter.name=Verzauberungsrouter
 
 tile.mfr.machine.laserdrill.name=Laser-Bohrer
-tile.mfr.machine.laserdrillprecharger=Laserbohrer-Vorladegerät
+tile.mfr.machine.laserdrillprecharger.name=Laserbohrer-Vorladegerät
 tile.mfr.machine.autoanvil.name=Automatischer Amboss
 tile.mfr.machine.blocksmasher.name=Blockzertrümmerer
 tile.mfr.machine.rednote.name=RedNotenblock
@@ -169,7 +169,7 @@ tile.mfr.plastic.pipe.name=Plastikrohr
 tile.mfr.rednet.logic.name=Programmierbarer RedNet-Controller
 tile.mfr.rednet.panel.historian.name=Graph
 
-tile.mfr.machine_block.machine=
+tile.mfr.machine_block.base.name=Maschinenblock
 tile.mfr.machine_block.prc.name=Gehäuse für den Programmierbaren RedNet-Controller
 
 tile.mfr.tank.name=Plastiktank
@@ -212,7 +212,6 @@ item.mfr.syringe.health.name=Gesundheitsspritze
 item.mfr.syringe.slime.name=Schleimvergrößerungsspritze
 item.mfr.syringe.zombie.name=Zombifizierungsspritze
 
-item.mfr.machine_block.name=Maschinenblock
 item.mfr.hammer.name=Präzisionsschmiedehammer
 
 item.mfr.plastic=Plastik

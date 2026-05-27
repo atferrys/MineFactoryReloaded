@@ -169,7 +169,7 @@ tile.mfr.plastic.pipe.name=プラスチックパイプ
 tile.mfr.rednet.logic.name=レッドネットコントローラ
 tile.mfr.rednet.panel.historian.name=レッドネットヒストリアン
 
-tile.mfr.machine_block.machine=item.mfr.machineblock
+tile.mfr.machine_block.base.name=ファクトリーマシンブロック
 tile.mfr.machine_block.prc.name=レッドネットコントローラハウジング
 
 tile.mfr.tank.name=プラスチックタンク
@@ -190,10 +190,10 @@ entity.mfr.pink_slime.name=ピンクスライム
 item.mfr.bucket.milk.name=牛乳入りバケツ
 
 item.mfr.plastic.cup.name=ポリカップ
-item.mfr.plastic.cup.prefix.name =
+item.mfr.plastic.cup.prefix.name=
 item.mfr.plastic.cup.suffix.name=Cup
 item.mfr.plastic.cell.name=Plastic Cell
-item.mfr.plastic.cell.prefix.name =
+item.mfr.plastic.cell.prefix.name=
 item.mfr.plastic.cell.suffix.name=Cell
 
 item.mfr.plastic.armor.helm.name=プラスチックのヘルメット
@@ -210,7 +210,6 @@ item.mfr.syringe.health.name=Health Syringe
 item.mfr.syringe.slime.name=Slime Embiggening Syringe
 item.mfr.syringe.zombie.name=Zombie Syringe
 
-item.mfr.machine_block.name=ファクトリーマシンブロック
 item.mfr.hammer.name=精密ハンマー
 item.mfr.plastic.sheet.name=プラスチックシート
 item.mfr.plastic.raw.name=生プラスチック
