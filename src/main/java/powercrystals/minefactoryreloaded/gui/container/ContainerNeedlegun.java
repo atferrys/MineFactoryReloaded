@@ -52,9 +52,37 @@ public class ContainerNeedlegun extends Container
 
 	@Nonnull
 	@Override
-	public ItemStack transferStackInSlot(EntityPlayer player, int slot)
-	{
-		return ItemStack.EMPTY;
+	public ItemStack transferStackInSlot(EntityPlayer player, int index) {
+
+		Slot slot = inventorySlots.get(index);
+
+		if(slot == null || !slot.getHasStack()) {
+			return ItemStack.EMPTY;
+		}
+
+		ItemStack stack = slot.getStack();
+		ItemStack returnStack = stack.copy();
+
+		if(index == 0) {
+			// Clicked gun ammo slot, move into player inventory
+			if(!mergeItemStack(stack, 1, inventorySlots.size(), true)) {
+				return ItemStack.EMPTY;
+			}
+		} else {
+			// Clicked inventory slot, move into ammo slot
+			if(!inventorySlots.get(0).isItemValid(stack) || !mergeItemStack(stack, 0, 1, false)) {
+				return ItemStack.EMPTY;
+			}
+		}
+
+		if(stack.isEmpty()) {
+			slot.putStack(ItemStack.EMPTY);
+		} else {
+			slot.onSlotChanged();
+		}
+
+		return returnStack;
+
 	}
 
 	@Override
