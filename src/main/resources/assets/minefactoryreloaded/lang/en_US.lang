@@ -192,7 +192,13 @@ fluid.mfr.chocolate_milk.name=Chocolate Milk
 fluid.mfr.mushroom_soup.name=Mushroom Soup
 fluid.mfr.steam.name=Steam
 
+entity.mfr.needle.name=Needle
+entity.mfr.potato_cannon.name=Potato Cannon
+entity.mfr.rocket.name=Rocket
+entity.mfr.safari_net.name=Safari Net
+entity.mfr.fishing_rod.name=Fishing Rod
 entity.mfr.pink_slime.name=Pink Slime
+entity.mfr.debug_tracker.name=Debug Tracker
 
 item.mfr.bucket.milk.name=Milk Bucket
 item.mfr.bucket.sewage.name=Sewage Bucket

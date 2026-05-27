@@ -107,7 +107,7 @@ public class ItemNeedleGun extends ItemFactoryGun {
 	public boolean initialize() {
 
 		super.initialize();
-		EntityRegistry.registerModEntity(new ResourceLocation(MFRProps.MOD_ID, "needle_gun"), EntityNeedle.class, "Needle", 2, MineFactoryReloadedCore.instance(), 160, 3, true);
+		EntityRegistry.registerModEntity(new ResourceLocation(MFRProps.MOD_ID, "needle_gun"), EntityNeedle.class, "mfr.needle", 2, MineFactoryReloadedCore.instance(), 160, 3, true);
 
 		return true;
 	}

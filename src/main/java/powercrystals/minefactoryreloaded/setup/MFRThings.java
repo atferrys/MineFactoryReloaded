@@ -329,7 +329,7 @@ public class MFRThings {
 		LootTableList.register(EntityPinkSlime.PINK_SLIME);
 
 		EntityRegistry
-				.registerModEntity(new ResourceLocation(MFRProps.MOD_ID, "debug_tracker"), DebugTracker.class, "DebugTracker", 99, MineFactoryReloadedCore.instance(), 250, 10, true);
+				.registerModEntity(new ResourceLocation(MFRProps.MOD_ID, "debug_tracker"), DebugTracker.class, "mfr.debug_tracker", 99, MineFactoryReloadedCore.instance(), 250, 10, true);
 
 
 		for (IInitializer init : initList) {

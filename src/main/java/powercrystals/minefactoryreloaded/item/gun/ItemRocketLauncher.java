@@ -82,7 +82,7 @@ public class ItemRocketLauncher extends ItemFactoryGun {
 	public boolean initialize() {
 
 		super.initialize();
-		EntityRegistry.registerModEntity(new ResourceLocation(MFRProps.MOD_ID, "rocket_launcher"), EntityRocket.class, "Rocket", 3, MineFactoryReloadedCore.instance(), 160, 1, true);
+		EntityRegistry.registerModEntity(new ResourceLocation(MFRProps.MOD_ID, "rocket_launcher"), EntityRocket.class, "mfr.rocket", 3, MineFactoryReloadedCore.instance(), 160, 1, true);
 
 		return true;
 	}

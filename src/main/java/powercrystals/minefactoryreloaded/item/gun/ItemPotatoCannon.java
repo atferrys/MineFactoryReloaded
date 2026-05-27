@@ -137,7 +137,7 @@ public class ItemPotatoCannon extends ItemFactoryGun {
 	public boolean initialize() {
 
 		super.initialize();
-		EntityRegistry.registerModEntity(new ResourceLocation(MFRProps.MOD_ID, "potato_cannon"), EntityFlyingItem.class, "PotatoCannon", 5, MineFactoryReloadedCore.instance(), 160, 7, true);
+		EntityRegistry.registerModEntity(new ResourceLocation(MFRProps.MOD_ID, "potato_cannon"), EntityFlyingItem.class, "mfr.potato_cannon", 5, MineFactoryReloadedCore.instance(), 160, 7, true);
 
 		return true;
 	}

@@ -63,7 +63,7 @@ public class ItemFishingRod extends ItemFactoryTool {
 	public boolean initialize() {
 
 		super.initialize();
-		EntityRegistry.registerModEntity(new ResourceLocation(MFRProps.MOD_ID, "fishing_rod"), EntityFishingRod.class, "FishingRod", 4, MineFactoryReloadedCore.instance(), 80, 3, true);
+		EntityRegistry.registerModEntity(new ResourceLocation(MFRProps.MOD_ID, "fishing_rod"), EntityFishingRod.class, "mfr.fishing_rod", 4, MineFactoryReloadedCore.instance(), 80, 3, true);
 
 		return true;
 	}

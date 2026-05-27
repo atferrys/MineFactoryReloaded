@@ -103,7 +103,7 @@ public class ItemSafariNetLauncher extends ItemFactoryGun {
 	public boolean initialize() {
 
 		super.initialize();
-		EntityRegistry.registerModEntity(new ResourceLocation(MFRProps.MOD_ID, "safari_net"), EntitySafariNet.class, "SafariNet", 0, MineFactoryReloadedCore.instance(), 160, 5, true);
+		EntityRegistry.registerModEntity(new ResourceLocation(MFRProps.MOD_ID, "safari_net"), EntitySafariNet.class, "mfr.safari_net", 0, MineFactoryReloadedCore.instance(), 160, 5, true);
 
 		return true;
 	}
