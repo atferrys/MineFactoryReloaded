@@ -181,16 +181,16 @@ tile.mfr.machine_block.prc.name=Programmable RedNet Controller Housing
 
 tile.mfr.tank.name=Plastic Tank
 
-fluid.mfr.milk.fluid.name=Milk
-fluid.mfr.sludge.fluid.name=Sludge
-fluid.mfr.sewage.fluid.name=Sewage
-fluid.mfr.mob_essence.fluid.name=Essence
-fluid.mfr.biofuel.fluid.name=BioFuel
-fluid.mfr.meat.fluid.name=Meat
-fluid.mfr.pink_slime.fluid.name=Pink Slime
-fluid.mfr.chocolate_milk.fluid.name=Chocolate Milk
-fluid.mfr.mushroom_soup.fluid.name=Mushroom Soup
-fluid.mfr.steam.fluid.name=Steam
+fluid.mfr.milk.name=Milk
+fluid.mfr.sludge.name=Sludge
+fluid.mfr.sewage.name=Sewage
+fluid.mfr.mob_essence.name=Essence
+fluid.mfr.biofuel.name=BioFuel
+fluid.mfr.meat.name=Meat
+fluid.mfr.pink_slime.name=Pink Slime
+fluid.mfr.chocolate_milk.name=Chocolate Milk
+fluid.mfr.mushroom_soup.name=Mushroom Soup
+fluid.mfr.steam.name=Steam
 
 entity.MineFactoryReloaded.mfrEntityPinkSlime.name=Pink Slime
 

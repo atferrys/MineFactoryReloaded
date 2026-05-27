@@ -174,16 +174,16 @@ tile.mfr.machine_block.prc.name=Корпус программируемого Re
 
 tile.mfr.tank.name=Пластиковый резервуар
 
-fluid.mfr.milk.fluid.name=Молоко
-fluid.mfr.sludge.fluid.name=Шлам
-fluid.mfr.sewage.fluid.name=Навоз
-fluid.mfr.mobessence.fluid.name=Эссенция
-fluid.mfr.biofuel.fluid.name=Биотопливо
-fluid.mfr.meat.fluid.name=Фарш
-fluid.mfr.pink_slime.fluid.name=Розовая слизь
-fluid.mfr.chocolatemilk.fluid.name=Молочный шоколад
-fluid.mfr.mushroomsoup.fluid.name=Грибной суп
-fluid.mfr.steam.fluid.name=Пар
+fluid.mfr.milk.name=Молоко
+fluid.mfr.sludge.name=Шлам
+fluid.mfr.sewage.name=Навоз
+fluid.mfr.mob_essence.name=Эссенция
+fluid.mfr.biofuel.name=Биотопливо
+fluid.mfr.meat.name=Фарш
+fluid.mfr.pink_slime.name=Розовая слизь
+fluid.mfr.chocolate_milk.name=Молочный шоколад
+fluid.mfr.mushroom_soup.name=Грибной суп
+fluid.mfr.steam.name=Пар
 
 entity.MineFactoryReloaded.mfrEntityPinkSlime.name=Розовый слизень
 
