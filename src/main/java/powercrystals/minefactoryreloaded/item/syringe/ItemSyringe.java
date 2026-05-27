@@ -22,7 +22,7 @@ public abstract class ItemSyringe extends ItemFactory implements ISyringe
 	{
 		if (!entity.world.isRemote && canInject(entity.world, entity, stack))
 		{
-			if (inject(entity.world, entity, stack))
+			if (inject(entity.world, entity, stack) && !player.capabilities.isCreativeMode)
 			{
 				player.setHeldItem(hand, new ItemStack(MFRThings.syringeEmptyItem));
 				return true;
