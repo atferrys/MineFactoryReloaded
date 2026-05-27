@@ -65,7 +65,7 @@ public class ComponentZoologistHouse extends StructureVillagePieces.Village
 		paneState = Blocks.GLASS_PANE.getDefaultState();
 		if (getBiomeSpecificBlockState(paneState).equals(paneState))
 		{
-			paneState = MFRThings.factoryGlassPaneBlock.getDefaultState(); 
+			paneState = MFRThings.factoryGlassPaneBlock.getStateFromMeta(rand.nextInt(16));
 		}
 
 		benchMeta = rand.nextInt(10) == 0 ? 12 : 0;
