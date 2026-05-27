@@ -200,6 +200,8 @@ entity.mfr.fishing_rod.name=Fishing Rod
 entity.mfr.pink_slime.name=Pink Slime
 entity.mfr.debug_tracker.name=Debug Tracker
 
+entity.Villager.zoologist=Zoologist
+
 item.mfr.bucket.milk.name=Milk Bucket
 
 item.mfr.plastic.cup.name=Plastic Cup

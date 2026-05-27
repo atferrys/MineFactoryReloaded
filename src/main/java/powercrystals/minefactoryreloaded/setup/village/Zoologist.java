@@ -31,7 +31,7 @@ public class Zoologist {
 
 		ForgeRegistries.VILLAGER_PROFESSIONS.register(zoologistProfession);
 
-		VillagerCareer zoologist = new VillagerCareer(zoologistProfession, MFRProps.PREFIX + "zoologist");
+		VillagerCareer zoologist = new VillagerCareer(zoologistProfession, "zoologist");
 		zoologist.addTrade(1, new ListItemForEmeraldAndItem(new ItemStack(MFRThings.rubberSaplingBlock, 8, 0),
 				ItemBlock.getItemFromBlock(Blocks.SAPLING), 8, 6));
 		zoologist.addTrade(1, new ListItemForEmeralds(MFRThings.safariNetSingleItem, new PriceInfo(1, 1)));
