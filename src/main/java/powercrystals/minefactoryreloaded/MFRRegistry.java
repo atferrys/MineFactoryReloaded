@@ -386,10 +386,8 @@ public abstract class MFRRegistry {
 	static void setup() {
 
 		try {
-			Field field = IMFRIntegrator.class.getField("REGISTRY");
+			Field field = IMFRIntegrator.Registry.class.getDeclaredField("registry");
 			field.setAccessible(true);
-
-			ReflectionManager.removeFinal(field);
 
 			field.set(null, new IMFRIntegrator.IRegistry() {
 

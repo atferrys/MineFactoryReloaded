@@ -41,8 +41,6 @@ public interface IMFRIntegrator {
 		String[] value();
 	}
 
-	IRegistry REGISTRY = IRegistry.EMPTY_REGISTRY;
-
 	/**
 	 * Read configuration options for your integrator from the provided config file. This runs before {@link #preLoad}.
 	 * <p>
@@ -112,6 +110,22 @@ public interface IMFRIntegrator {
 	@interface After {
 
 		String[] value();
+	}
+
+	// Keeping this for backwards compatibility
+	IRegistry REGISTRY = Registry.getRegistry();
+
+	// Newer java versions removed the ability to modify final
+	// fields via reflection, and since every field in an Interface
+	// is forced to be final, we have to use this workaround:
+	class Registry {
+
+		private static IRegistry registry = IRegistry.EMPTY_REGISTRY;
+
+		public static IRegistry getRegistry() {
+			return registry;
+		}
+
 	}
 
 	// fragment into multiple IRegistries? this is kind of a beast to interact with for all the methods
