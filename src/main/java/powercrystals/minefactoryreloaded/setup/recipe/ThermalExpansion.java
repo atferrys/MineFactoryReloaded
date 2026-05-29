@@ -360,13 +360,11 @@ public class ThermalExpansion implements IMFRRecipeSet {
 
 		DeepStorageUnit.addShaped(
 				"PSP",
-				"FEF",
-				"CSC",
+				"SES",
+				"PSP",
 				'P', "sheetPlastic",
-				'S', SHULKER_SHELL,
-				'F', CHORUS_FRUIT_POPPED,
-				'E', forBucketFluid("ender"), // TODO: placeholder?
-				'C', forLevel(strongbox, 2)
+				'S', forLevel(strongbox, 2),
+				'E', forBucketFluid("ender") // TODO: placeholder?
 		);
 
 		cheap_DeepStorageUnit.addShaped(
