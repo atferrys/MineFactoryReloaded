@@ -630,7 +630,7 @@ public class ThermalExpansion implements IMFRRecipeSet {
 				"TFT",
 				"OCO",
 				'P', "sheetPlastic",
-				'E', forLevel(energy_cell, 5),
+				'E', forLevel(energy_cell, 4),
 				'T', "ingotEnderium",
 				'F', "blockEnderium", // TODO: placeholder
 				'O', "plateElectrum",
