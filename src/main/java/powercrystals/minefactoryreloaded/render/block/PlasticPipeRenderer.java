@@ -17,11 +17,11 @@ import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraftforge.common.property.IExtendedBlockState;
 import powercrystals.minefactoryreloaded.MFRProps;
-import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
 import powercrystals.minefactoryreloaded.block.transport.BlockPlasticPipe;
 import powercrystals.minefactoryreloaded.tile.transport.TileEntityPlasticPipe;
 import powercrystals.minefactoryreloaded.tile.transport.TileEntityPlasticPipe.ConnectionType;
@@ -51,9 +51,8 @@ public class PlasticPipeRenderer implements ISimpleBlockBakery {
 
 	static {
 		try {
-			Map<String, CCModel> cableModels = OBJParser.parseModels(MineFactoryReloadedCore.class.
-							getResourceAsStream("/powercrystals/minefactoryreloaded/models/PlasticPipe.obj"),
-					7, new Scale(1 / 16f));
+			Map<String, CCModel> cableModels = OBJParser
+					.parseModels(new ResourceLocation(MFRProps.MODEL_FOLDER + "plastic_pipe.obj"), 7, new Scale(1 / 16f));
 			Vector3 p = new Vector3(0, 0, 0);
 			base = cableModels.get("base").backfacedCopy();
 			compute(base);

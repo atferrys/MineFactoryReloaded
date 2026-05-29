@@ -28,7 +28,6 @@ import net.minecraftforge.common.model.IModelState;
 import org.apache.commons.lang3.tuple.Pair;
 import org.lwjgl.opengl.GL11;
 import powercrystals.minefactoryreloaded.MFRProps;
-import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
 import powercrystals.minefactoryreloaded.block.BlockRedNetLogic;
 import powercrystals.minefactoryreloaded.render.item.RedNetCardItemRenderer;
 import powercrystals.minefactoryreloaded.render.model.RedNetCardsModel;
@@ -53,9 +52,8 @@ public class RedNetLogicRenderer extends TileEntitySpecialRenderer<TileEntityRed
 
 	static {
 		try {
-			Map<String, CCModel> cableModels = OBJParser.parseModels(MineFactoryReloadedCore.class.
-							getResourceAsStream("/powercrystals/minefactoryreloaded/models/RedComp.obj"),
-					7, new Scale(1 / 16f));
+			Map<String, CCModel> cableModels = OBJParser
+					.parseModels(new ResourceLocation(MFRProps.MODEL_FOLDER + "rednet_logic.obj"), 7, new Scale(1 / 16f));
 			base = cableModels.get("case").backfacedCopy();
 			compute(base);
 
