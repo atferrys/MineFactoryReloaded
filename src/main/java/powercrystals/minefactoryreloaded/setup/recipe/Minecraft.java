@@ -324,8 +324,10 @@ public class Minecraft implements IMFRRecipeSet {
 		//region decorative
 		{
 			RecipeManager.addRecipe("road_block", stack(factoryRoadBlock, 16)).setRecipeGroup("road_block");
-			RecipeManager.addRecipe("road_light", stack(factoryRoadBlock, 4, 4)).setRecipeGroup("road_light");
-			RecipeManager.addRecipe("road_light_inverted", stack(factoryRoadBlock, 1, 1)).setRecipeGroup("road_light");
+			RecipeManager.addRecipe("road_light", stack(factoryRoadBlock, 4, 1)).setRecipeGroup("road_light");
+
+			RecipeManager.addRecipe("road_light_to_inverted", stack(factoryRoadBlock, 1, 4)).setRecipeGroup("road_light");
+			RecipeManager.addRecipe("road_light_from_inverted", stack(factoryRoadBlock, 1, 1)).setRecipeGroup("road_light");
 
 			//region glass
 			{
@@ -1213,7 +1215,9 @@ public class Minecraft implements IMFRRecipeSet {
 	//region decorative
 	private final IRecipeHolder road_block = IRecipeHolder.EMPTY;
 	private final IRecipeHolder road_light = IRecipeHolder.EMPTY;
-	private final IRecipeHolder road_light_inverted = IRecipeHolder.EMPTY;
+
+	private final IRecipeHolder road_light_to_inverted = IRecipeHolder.EMPTY;
+	private final IRecipeHolder road_light_from_inverted = IRecipeHolder.EMPTY;
 
 	private final IRecipeHolder[] ceramic_dye_4 = IRecipeHolder.EMPTY_ARRAY;
 	private final IRecipeHolder[] ceramic_dye_8 = IRecipeHolder.EMPTY_ARRAY;
@@ -1300,8 +1304,9 @@ public class Minecraft implements IMFRRecipeSet {
 				'X', road_block,
 				'C', REDSTONE_LAMP
 		);
-		road_light.addShapeless(road_light_inverted);
-		road_light_inverted.addShapeless(road_light);
+
+		road_light_from_inverted.addShapeless(road_light_to_inverted);
+		road_light_to_inverted.addShapeless(road_light_from_inverted);
 		//endregion
 
 		//region glass and dye
