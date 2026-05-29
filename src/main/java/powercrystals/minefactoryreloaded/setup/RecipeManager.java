@@ -105,7 +105,7 @@ public class RecipeManager {
 		Minecraft.registerRecipeHolders();
 		for (Iterator<RecipeSetContainer> it = Iterators.concat(Iterators.singletonIterator(VANILLA), recipeSets.iterator()); it.hasNext(); ) {
 			RecipeSetContainer container = it.next();
-			if (container.isEnabled()) {
+			if (container.isEnabled() || container.equals(VANILLA)) {
 				try {
 					container.processHolders();
 				} catch (Throwable t) {
@@ -115,7 +115,9 @@ public class RecipeManager {
 				}
 			}
 		}
-		recipeSets.stream().filter(RecipeSetContainer::isEnabled).forEach(v -> v.recipe.registerOredict());
+		recipeSets.stream()
+				.filter((container) -> container.isEnabled() || container.equals(VANILLA))
+				.forEach(v -> v.recipe.registerOredict());
 	}
 
 	@SubscribeEvent(priority = EventPriority.HIGH)
