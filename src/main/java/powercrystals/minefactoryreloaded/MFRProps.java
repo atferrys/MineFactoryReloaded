@@ -17,7 +17,7 @@ public class MFRProps {
 
 	public static final String MOD_ID = Tags.MOD_ID;
 
-	public static final String DEPENDENCIES = CoFHCore.VERSION_GROUP + CodeChickenLib.MOD_VERSION_DEP + RedstoneFluxProps.VERSION_GROUP + CoFHWorld.VERSION_GROUP;
+	public static final String DEPENDENCIES = "required-after:mixinbooter;" + CoFHCore.VERSION_GROUP + CodeChickenLib.MOD_VERSION_DEP + RedstoneFluxProps.VERSION_GROUP + CoFHWorld.VERSION_GROUP;
 
 	public static final String MOD_NETWORK_CHANNEL = "MFReloaded";
 
