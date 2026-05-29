@@ -3,8 +3,10 @@ package powercrystals.minefactoryreloaded.setup;
 import net.minecraftforge.common.config.ConfigCategory;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.config.Property;
+import net.minecraftforge.fml.common.Loader;
 
 import java.io.File;
+import java.util.Set;
 
 import static net.minecraftforge.common.config.Configuration.CATEGORY_GENERAL;
 
@@ -121,10 +123,12 @@ public class MFRConfig {
 		return value.getBoolean();
 	}
 
-	public static boolean isRecipeSetEnabled(String name, String from) {
+	public static boolean isRecipeSetEnabled(String name, String from, Set<String> dependencies) {
 
 		boolean isVanilla = name.equals("Minecraft");
-		Property value = config.get("Integration.Recipes", name, isVanilla).setRequiresMcRestart(true);
+		boolean dependenciesLoaded = dependencies.stream().allMatch(Loader::isModLoaded);
+		Property value = config.get("Integration.Recipes", name, isVanilla || dependenciesLoaded)
+				.setRequiresMcRestart(true);
 		if (isVanilla) {
 			value.setComment("If true, MFR will register its standard (vanilla-only) recipes.");
 		} else {

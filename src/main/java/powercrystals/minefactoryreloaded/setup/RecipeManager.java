@@ -85,12 +85,12 @@ public class RecipeManager {
 		for (Iterator<RecipeSetContainer> it = Iterators.concat(Iterators.singletonIterator(VANILLA), recipeSets.iterator()); it.hasNext(); ) {
 			RecipeSetContainer container = it.next();
 			if (container.recipe != null) {
-				container.enabled = MFRConfig.isRecipeSetEnabled(container.name, container.mod);
+				container.enabled = MFRConfig.isRecipeSetEnabled(container.name, container.provider, container.dependencies);
 				if (container.isEnabled()) {
 					try {
 						container.recipe.readConfig(getConfig.apply("recipe/" + container.name));
 					} catch (Throwable t) {
-						log().error("Error reading config for MFR recipe set {} from {}", container.name, container.mod);
+						log().error("Error reading config for MFR recipe set {} from {}", container.name, container.provider);
 						log().catching(Level.ERROR, t);
 						container.enabled = false;
 					}
@@ -109,7 +109,7 @@ public class RecipeManager {
 				try {
 					container.processHolders();
 				} catch (Throwable t) {
-					log().error("Error processing data for MFR recipe set {} from {}", container.name, container.mod);
+					log().error("Error processing data for MFR recipe set {} from {}", container.name, container.provider);
 					log().catching(Level.ERROR, t);
 					container.enabled = false;
 				}
@@ -159,16 +159,19 @@ public class RecipeManager {
 		RecipeSetContainer(ASMDataTable.ASMData asmData) {
 
 			try {
-				mod = asString(asmData.getCandidate());
+				provider = asString(asmData.getCandidate());
 				String className = Type.getObjectType(asmData.getClassName()).getClassName();
 				Class<?> recipeSet = Class.forName(className, false, this.getClass().getClassLoader());
 				notFound:
 				{
+					Set<String> dependencies = new HashSet<>();
 					IMFRRecipeSet.DependsOn depends = recipeSet.getAnnotation(IMFRRecipeSet.DependsOn.class);
 					if (depends != null) for (String entry : Objects.requireNonNull(depends.value(), "Cannot have null @DependsOn")) {
 						if (!Loader.isModLoaded(entry))
 							break notFound;
+						dependencies.add(entry);
 					}
+					this.dependencies = Collections.unmodifiableSet(dependencies);
 					recipe = IMFRRecipeSet.class.cast(recipeSet.newInstance());
 					String name = recipe.getSetName();
 					if (name == null || name.contains(".") || name.toLowerCase(Locale.ROOT).equals("common") ||
@@ -185,14 +188,15 @@ public class RecipeManager {
 					this.name = name;
 				}
 			} catch (Throwable t) {
-				log().error("Error loading MFR recipe set from {}", mod);
+				log().error("Error loading MFR recipe set from {}", provider);
 				log().catching(Level.ERROR, t);
 				recipe = null;
 			}
 		}
 
-		String mod;
+		String provider;
 		String name;
+		Set<String> dependencies;
 		IMFRRecipeSet recipe;
 
 		public boolean isEnabled() {
