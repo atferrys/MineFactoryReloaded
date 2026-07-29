@@ -110,4 +110,6 @@ dependencies {
 
     compileOnly rfg.deobf("curse.maven:agricraft-refitted-1459246:8119193")
 
+    compileOnly rfg.deobf("curse.maven:biomes-o-plenty-220318:3558882")
+
 }
