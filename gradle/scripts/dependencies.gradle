@@ -110,4 +110,6 @@ dependencies {
 
     compileOnly rfg.deobf("curse.maven:agricraft-refitted-1459246:8119193")
 
+    compileOnly rfg.deobf("curse.maven:project-vibrant-journeys-300297:2775566")
+
 }
