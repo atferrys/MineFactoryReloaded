@@ -189,9 +189,9 @@ public class ComponentZoologistHouse extends StructureVillagePieces.Village {
 		this.fillWithBlocks(world, sbb, 0, 7, 2, 8, 7, 3, brick, brick, false);
 
 		// Place stairs on the roof
-		IBlockState stairsNorth = Blocks.OAK_STAIRS.getDefaultState()
+		IBlockState stairsNorth = this.getBiomeSpecificBlockState(Blocks.OAK_STAIRS.getDefaultState())
 				.withProperty(BlockStairs.FACING, EnumFacing.NORTH);
-		IBlockState stairsSouth = Blocks.OAK_STAIRS.getDefaultState()
+		IBlockState stairsSouth = this.getBiomeSpecificBlockState(Blocks.OAK_STAIRS.getDefaultState())
 				.withProperty(BlockStairs.FACING, EnumFacing.SOUTH);
 
 		for(int zz = -1; zz <= 2; ++zz) {
@@ -210,7 +210,7 @@ public class ComponentZoologistHouse extends StructureVillagePieces.Village {
 		this.fillWithBlocks(world, sbb, 8, 2, 5, 8, 4, 5, brick, brick, false);
 		this.fillWithBlocks(world, sbb, 8, 2, 0, 8, 4, 0, brick, brick, false);
 
-		IBlockState planks = Blocks.PLANKS.getDefaultState();
+		IBlockState planks = this.getBiomeSpecificBlockState(Blocks.PLANKS.getDefaultState());
 
 		this.fillWithBlocks(world, sbb, 0, 2, 1, 0, 4, 4, planks, planks, false);
 		this.fillWithBlocks(world, sbb, 1, 2, 5, 7, 4, 5, planks, planks, false);
@@ -269,7 +269,7 @@ public class ComponentZoologistHouse extends StructureVillagePieces.Village {
 		this.fillWithBlocks(world, sbb, 1, 3, 4, 7, 3, 4, bookshelf, bookshelf, false);
 
 		// Wrap around bench
-		IBlockState stairsEast = Blocks.OAK_STAIRS.getDefaultState()
+		IBlockState stairsEast = this.getBiomeSpecificBlockState(Blocks.OAK_STAIRS.getDefaultState())
 				.withProperty(BlockStairs.FACING, EnumFacing.EAST);
 
 		this.setBlockState(world, stairsEast, 7, 1, 4, sbb);
@@ -280,7 +280,7 @@ public class ComponentZoologistHouse extends StructureVillagePieces.Village {
 		this.setBlockState(world, stairsNorth, 3, 1, 4, sbb);
 
 		// "Tables"
-		IBlockState fence = Blocks.OAK_FENCE.getDefaultState();
+		IBlockState fence = this.getBiomeSpecificBlockState(Blocks.OAK_FENCE.getDefaultState());
 		IBlockState pressurePlate = Blocks.WOODEN_PRESSURE_PLATE.getDefaultState();
 
 		this.setBlockState(world, fence, 6, 1, 3, sbb);
@@ -306,7 +306,7 @@ public class ComponentZoologistHouse extends StructureVillagePieces.Village {
 
 		if(this.getBlockStateFromPos(world, 1, 0, -1, sbb).getBlock() == Blocks.AIR &&
 				this.getBlockStateFromPos(world, 1, -1, -1, sbb).getBlock() != Blocks.AIR) {
-			IBlockState cobblestoneStairs = Blocks.STONE_STAIRS.getDefaultState()
+			IBlockState cobblestoneStairs = this.getBiomeSpecificBlockState(Blocks.STONE_STAIRS.getDefaultState())
 					.withProperty(BlockStairs.FACING, EnumFacing.NORTH);
 			this.setBlockState(world, cobblestoneStairs, 1, 0, -1, sbb);
 		}
