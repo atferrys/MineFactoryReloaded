@@ -311,6 +311,9 @@ public class ComponentZoologistHouse extends StructureVillagePieces.Village {
 
 		// Generate chest with loot
 		if(!this.hasGeneratedChest && this.generateChest(world, sbb, random, 1, 1, 4, MFRLoot.ZOOLOGIST_CHEST)) {
+			IBlockState rotatedState = this.getBlockStateFromPos(world, 1, 1, 4, sbb)
+					.withProperty(BlockChest.FACING, EnumFacing.SOUTH);
+			this.setBlockState(world, rotatedState, 1, 1, 4, sbb);
 			this.hasGeneratedChest = true;
 		}
 
