@@ -12,6 +12,7 @@ import net.minecraft.world.gen.structure.MapGenStructureIO;
 import net.minecraft.world.gen.structure.StructureVillagePieces.PieceWeight;
 import net.minecraft.world.gen.structure.StructureVillagePieces.Start;
 import net.minecraft.world.gen.structure.StructureVillagePieces.Village;
+import powercrystals.minefactoryreloaded.MFRProps;
 
 public class VillageCreationHandler implements IVillageCreationHandler {
 
@@ -22,7 +23,7 @@ public class VillageCreationHandler implements IVillageCreationHandler {
 	
 	@Override
 	public Class<?> getComponentClass() {
-		MapGenStructureIO.registerStructureComponent(ComponentZoologistHouse.class, "minefactoryreloaded:ZoologistHouseStructure");
+		MapGenStructureIO.registerStructureComponent(ComponentZoologistHouse.class, MFRProps.PREFIX + "ZoologistHouseStructure");
 		return ComponentZoologistHouse.class;
 	}
 
