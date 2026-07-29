@@ -34,29 +34,30 @@ public class Zoologist {
 		ForgeRegistries.VILLAGER_PROFESSIONS.register(zoologistProfession);
 
 		VillagerCareer zoologist = new VillagerCareer(zoologistProfession, "zoologist");
+
 		zoologist.addTrade(1, new ListItemForEmeraldAndItem(new ItemStack(MFRThings.rubberSaplingBlock, 8, 0),
 				ItemBlock.getItemFromBlock(Blocks.SAPLING), 8, 6));
 		zoologist.addTrade(1, new ListItemForEmeralds(MFRThings.safariNetSingleItem, new PriceInfo(1, 1)));
 		zoologist.addTrade(2, new ListItemForEmeraldAndItem(getHiddenNetStack(), MFRThings.safariNetSingleItem));
 		zoologist.addTrade(3, new ListItemForEmeralds(MFRThings.safariNetItem, new PriceInfo(3, 1)));
+
 	}
 
 	@Nonnull
 	public static ItemStack getHiddenNetStack() {
-
-		@Nonnull ItemStack s = new ItemStack(MFRThings.safariNetSingleItem);
-		return ItemSafariNet.makeMysteryNet(s);
+		return ItemSafariNet.makeMysteryNet(new ItemStack(MFRThings.safariNetSingleItem));
 	}
 
 	private static class ListItemForEmeraldAndItem implements EntityVillager.ITradeList {
 
-		private final @Nonnull ItemStack itemToBuy;
+		@Nonnull
+		private final ItemStack itemToBuy;
+
 		private final Item itemToPay;
 		private final int maxRandomMeta;
 		private final int payCount;
 
 		public ListItemForEmeraldAndItem(@Nonnull ItemStack itemToBuy, Item itemToPay, int payCount, int maxRandomMeta) {
-
 			this.itemToBuy = itemToBuy;
 			this.itemToPay = itemToPay;
 			this.payCount = payCount;
@@ -64,23 +65,18 @@ public class Zoologist {
 		}
 
 		public ListItemForEmeraldAndItem(@Nonnull ItemStack itemToBuy, Item itemToPay) {
-
 			this(itemToBuy, itemToPay, 1, 0);
 		}
 
 		@Override
-		public void addMerchantRecipe(IMerchant merchant, MerchantRecipeList recipeList, Random random) {
-
-			@Nonnull ItemStack itemCost1;
-			@Nonnull ItemStack itemCost2;
-			@Nonnull ItemStack itemBeingSold;
-
-			itemCost1 = new ItemStack(Items.EMERALD);
-			itemCost2 = new ItemStack(itemToPay, 1, maxRandomMeta == 0 ? 0 : random.nextInt(maxRandomMeta));
-			itemBeingSold = itemToBuy.copy();
-
-			recipeList.add(new MerchantRecipe(itemCost1, itemCost2, itemBeingSold));
+		public void addMerchantRecipe(@Nonnull IMerchant merchant, MerchantRecipeList recipeList, @Nonnull Random random) {
+			recipeList.add(new MerchantRecipe(
+					new ItemStack(Items.EMERALD),
+					new ItemStack(itemToPay, 1, maxRandomMeta == 0 ? 0 : random.nextInt(maxRandomMeta)),
+					itemToBuy.copy()
+			));
 		}
+
 	}
 
 }
