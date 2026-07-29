@@ -299,6 +299,8 @@ public class ComponentZoologistHouse extends StructureVillagePieces.Village {
 		// Overhead lights (match large/small bricks)
 		this.fillWithBlocks(world, sbb, 1, 5, 2, 7, 5, 3, light, light, false);
 
+		// Clean entrance in case of zombie infested village
+		this.fillWithAir(world, sbb, 1, 1, 0, 1, 2, 0);
 		// Place Door
 		this.createVillageDoor(world, sbb, random, 1, 1, 0, EnumFacing.NORTH);
 
