@@ -110,4 +110,7 @@ dependencies {
 
     compileOnly rfg.deobf("curse.maven:agricraft-refitted-1459246:8119193")
 
+    compileOnly rfg.deobf("curse.maven:mantle-74924:2713386")
+    compileOnly rfg.deobf("curse.maven:natura-legacy-1116420:8110288")
+
 }

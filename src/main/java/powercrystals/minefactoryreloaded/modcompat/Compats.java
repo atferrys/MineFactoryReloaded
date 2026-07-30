@@ -18,5 +18,6 @@ public class Compats {
 		public static final String BACKTOOLS = "backtools";
 		public static final String MULTIPARTCBE = "microblockcbe";
 		public static final String AGRICRAFT = "agricraft";
+        public static final String NATURA = "natura";
 	}
 }
