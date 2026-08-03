@@ -19,5 +19,6 @@ public class Compats {
 		public static final String MULTIPARTCBE = "microblockcbe";
 		public static final String AGRICRAFT = "agricraft";
 		public static final String BIOMES_O_PLENTY = "biomesoplenty";
+		public static final String PROJECT_VIBRANT_JOURNEYS = "pvj";
 	}
 }
