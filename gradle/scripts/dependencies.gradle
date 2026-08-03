@@ -114,4 +114,7 @@ dependencies {
 
     compileOnly rfg.deobf("curse.maven:project-vibrant-journeys-300297:2775566")
 
+    compileOnly rfg.deobf("curse.maven:mantle-74924:2713386")
+    compileOnly rfg.deobf("curse.maven:natura-legacy-1116420:8110288")
+
 }
