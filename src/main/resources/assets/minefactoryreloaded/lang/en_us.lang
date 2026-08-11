@@ -520,3 +520,30 @@ info.mfr.preferences=Preferences
 info.mfr.loot=Loot
 info.mfr.legacy=Legacy
 info.mfr.folded=Folded
+
+# JEI Integration
+
+jei.info.mfr.energy=%s RF
+
+jei.info.mfr.laserdrill.focus=Focus
+
+jei.info.mfr.bioreactor.efficiency=Efficiency
+jei.info.mfr.bioreactor.efficiency.1=§7Depends on the amount of different
+jei.info.mfr.bioreactor.efficiency.2=§7items being processed, incrementing
+jei.info.mfr.bioreactor.efficiency.3=§7the BioFuel generation.
+
+jei.info.mfr.sewer.essence=Experience Orbs
+jei.info.mfr.sewer.essence.1=§7XP gets converted into Essence.
+
+jei.info.mfr.sewer.sewage=Animals or Villagers
+jei.info.mfr.sewer.sewage.1=§7Larger animals produce more sewage.
+
+jei.info.mfr.grinder=Mobs
+jei.info.mfr.grinder.1=§7Mobs that drop more XP
+jei.info.mfr.grinder.2=§7produce more Essence.
+
+jei.info.mfr.harvester=Harvestable Blocks
+jei.info.mfr.harvester.1=§7Sludge is a byproduct of harvesting.
+
+jei.info.mfr.slaughterhouse=Animals
+jei.info.mfr.slaughterhouse.1=§7Larger animals produce more meat.
