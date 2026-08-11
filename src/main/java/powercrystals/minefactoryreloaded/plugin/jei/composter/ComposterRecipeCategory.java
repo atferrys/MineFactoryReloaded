@@ -2,10 +2,7 @@ package powercrystals.minefactoryreloaded.plugin.jei.composter;
 
 import mezz.jei.api.IGuiHelper;
 import mezz.jei.api.IModRegistry;
-import mezz.jei.api.gui.IDrawable;
-import mezz.jei.api.gui.IGuiFluidStackGroup;
-import mezz.jei.api.gui.IGuiItemStackGroup;
-import mezz.jei.api.gui.IRecipeLayout;
+import mezz.jei.api.gui.*;
 import mezz.jei.api.ingredients.IIngredients;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.I18n;
@@ -27,18 +24,21 @@ public class ComposterRecipeCategory extends MachineRecipeCategory<ComposterReci
     private final IDrawable arrowWidget;
     private final IDrawable tankOverlay;
     private final IDrawable energyOverlay;
+    private final IDrawableAnimated workOverlay;
 
     private final int sewagePerOperation;
     private final int energyPerOperation;
     private final int tankSize;
 
     private static final int ENERGY_X = 140, ENERGY_Y = 15;
+    private static final int WORK_X = 150, WORK_Y = 15;
 
     public ComposterRecipeCategory(IGuiHelper guiHelper) {
 
         super(Machine.Composter);
 
         TileEntityComposter dummy = new TileEntityComposter();
+        int workTicks = dummy.getWorkMax();
         sewagePerOperation = dummy.getWorkMax() * 20;
         energyPerOperation = dummy.getActivationEnergy() * dummy.getWorkMax();
         tankSize = dummy.getTanks()[0].getCapacity();
@@ -69,6 +69,17 @@ public class ComposterRecipeCategory extends MachineRecipeCategory<ComposterReci
                 BAR_WIDTH, energyHeight
         );
 
+        workOverlay = guiHelper.createAnimatedDrawable(
+                guiHelper.createDrawable(
+                        texture,
+                        185, 60,
+                        BAR_WIDTH, BAR_HEIGHT
+                ),
+                workTicks,
+                IDrawableAnimated.StartDirection.BOTTOM,
+                false
+        );
+
     }
 
     @Override
@@ -81,6 +92,7 @@ public class ComposterRecipeCategory extends MachineRecipeCategory<ComposterReci
     public void drawExtras(@Nonnull Minecraft minecraft) {
         arrowWidget.draw(minecraft, 73, 30);
         energyOverlay.draw(minecraft, ENERGY_X - BG_X, ENERGY_Y - BG_Y + (BAR_HEIGHT - energyOverlay.getHeight()));
+        workOverlay.draw(minecraft, WORK_X - BG_X, WORK_Y - BG_Y);
     }
 
     @Override

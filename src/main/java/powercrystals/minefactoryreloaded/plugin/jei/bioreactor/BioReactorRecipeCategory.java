@@ -2,10 +2,7 @@ package powercrystals.minefactoryreloaded.plugin.jei.bioreactor;
 
 import mezz.jei.api.IGuiHelper;
 import mezz.jei.api.IModRegistry;
-import mezz.jei.api.gui.IDrawable;
-import mezz.jei.api.gui.IGuiFluidStackGroup;
-import mezz.jei.api.gui.IGuiItemStackGroup;
-import mezz.jei.api.gui.IRecipeLayout;
+import mezz.jei.api.gui.*;
 import mezz.jei.api.ingredients.IIngredients;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.I18n;
@@ -29,10 +26,12 @@ public class BioReactorRecipeCategory extends MachineRecipeCategory<BioReactorRe
     private final IDrawable arrowWidget;
     private final IDrawable tankOverlay;
     private final IDrawable efficiencyOverlay;
+    private final IDrawableAnimated bufferOverlay;
 
     private final int tankSize;
 
     private static final int EFFICIENCY_X = 150, EFFICIENCY_Y = 15;
+    private static final int BUFFER_X = 160, BUFFER_Y = 15;
 
     public BioReactorRecipeCategory(IGuiHelper guiHelper) {
 
@@ -66,6 +65,17 @@ public class BioReactorRecipeCategory extends MachineRecipeCategory<BioReactorRe
                 BAR_WIDTH, BAR_HEIGHT/2
         );
 
+        bufferOverlay = guiHelper.createAnimatedDrawable(
+                guiHelper.createDrawable(
+                        texture,
+                        185, 60,
+                        BAR_WIDTH, BAR_HEIGHT
+                ),
+                120,
+                IDrawableAnimated.StartDirection.BOTTOM,
+                false
+        );
+
     }
 
     @Override
@@ -78,6 +88,7 @@ public class BioReactorRecipeCategory extends MachineRecipeCategory<BioReactorRe
     public void drawExtras(@Nonnull Minecraft minecraft) {
         arrowWidget.draw(minecraft, 78, 30);
         efficiencyOverlay.draw(minecraft, EFFICIENCY_X - BG_X, EFFICIENCY_Y - BG_Y + (BAR_HEIGHT - efficiencyOverlay.getHeight()));
+        bufferOverlay.draw(minecraft, BUFFER_X - BG_X, BUFFER_Y - BG_Y);
     }
 
     @Override

@@ -3,6 +3,7 @@ package powercrystals.minefactoryreloaded.plugin.jei.laserdrill;
 import mezz.jei.api.IGuiHelper;
 import mezz.jei.api.IModRegistry;
 import mezz.jei.api.gui.IDrawable;
+import mezz.jei.api.gui.IDrawableAnimated;
 import mezz.jei.api.gui.IGuiItemStackGroup;
 import mezz.jei.api.gui.IRecipeLayout;
 import mezz.jei.api.ingredients.IIngredients;
@@ -27,11 +28,13 @@ public class LaserDrillRecipeCategory extends MachineRecipeCategory<LaserDrillRe
     private final IDrawable arrowWidget;
     private final IDrawable focusSlotBackground;
     private final IDrawable energyOverlay;
+    private final IDrawableAnimated workOverlay;
 
     private final int energyPerOperation;
     private final Map<Integer, List<ItemStack>> laserPreferredOres = new HashMap<>();
 
     private static final int ENERGY_X = 150, ENERGY_Y = 15;
+    private static final int WORK_X = 160, WORK_Y = 15;
     private static final int SLOT_SIZE = 18;
 
     public LaserDrillRecipeCategory(IGuiHelper guiHelper) {
@@ -40,6 +43,7 @@ public class LaserDrillRecipeCategory extends MachineRecipeCategory<LaserDrillRe
 
         TileEntityLaserDrillPrecharger dummyPrecharger = new TileEntityLaserDrillPrecharger();
         TileEntityLaserDrill dummyDrill = new TileEntityLaserDrill();
+        int workTicks = dummyDrill.getWorkMax();
         energyPerOperation = dummyPrecharger.getActivationEnergy() * dummyDrill.getWorkMax();
         dummyPrecharger = null;
         dummyDrill = null;
@@ -72,6 +76,17 @@ public class LaserDrillRecipeCategory extends MachineRecipeCategory<LaserDrillRe
                 BAR_WIDTH, BAR_HEIGHT
         );
 
+        workOverlay = guiHelper.createAnimatedDrawable(
+                guiHelper.createDrawable(
+                        texture,
+                        185, 60,
+                        BAR_WIDTH, BAR_HEIGHT
+                ),
+                workTicks,
+                IDrawableAnimated.StartDirection.BOTTOM,
+                false
+        );
+
     }
 
     @Override
@@ -87,6 +102,7 @@ public class LaserDrillRecipeCategory extends MachineRecipeCategory<LaserDrillRe
 
         focusSlotBackground.draw(minecraft, 10, 22);
         energyOverlay.draw(minecraft, ENERGY_X - BG_X, ENERGY_Y - BG_Y);
+        workOverlay.draw(minecraft, WORK_X - BG_X, WORK_Y - BG_Y);
 
         String focusText = I18n.format("jei.info.mfr.laserdrill.focus");
         minecraft.fontRenderer.drawString(focusText, 10 + SLOT_SIZE/2 - minecraft.fontRenderer.getStringWidth(focusText)/2, 43, 0x808080);
