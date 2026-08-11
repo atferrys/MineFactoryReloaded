@@ -537,3 +537,7 @@ jei.info.mfr.sewer.essence.1=§7XP gets converted into Essence.
 
 jei.info.mfr.sewer.sewage=Animals or Villagers
 jei.info.mfr.sewer.sewage.1=§7Larger animals produce more sewage.
+
+jei.info.mfr.grinder=Mobs
+jei.info.mfr.grinder.1=§7Mobs that drop more XP
+jei.info.mfr.grinder.2=§7produce more Essence.

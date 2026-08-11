@@ -16,12 +16,15 @@ import powercrystals.minefactoryreloaded.setup.Machine;
 import powercrystals.minefactoryreloaded.tile.machine.mobs.TileEntityGrinder;
 
 import javax.annotation.Nonnull;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
 public class GrinderRecipeCategory extends MachineRecipeCategory<GrinderRecipeWrapper> {
 
     private final IDrawable background;
+    private final IDrawable mobWidget;
+    private final IDrawable arrowWidget;
     private final IDrawable tankOverlay;
     private final IDrawable energyOverlay;
     private final IDrawableAnimated workOverlay;
@@ -29,6 +32,7 @@ public class GrinderRecipeCategory extends MachineRecipeCategory<GrinderRecipeWr
     private final int energyPerOperation;
     private final int tankSize;
 
+    private static final int MOB_WIDGET_X = 40, MOB_WIDGET_Y = 31;
     private static final int ENERGY_X = 140, ENERGY_Y = 15;
     private static final int WORK_X = 150, WORK_Y = 15;
 
@@ -46,6 +50,18 @@ public class GrinderRecipeCategory extends MachineRecipeCategory<GrinderRecipeWr
                 texture,
                 BG_X, BG_Y,
                 168, 73
+        );
+
+        mobWidget = guiHelper.createDrawable(
+                widgetsTexture,
+                0, 48,
+                16, 16
+        );
+
+        arrowWidget = guiHelper.createDrawable(
+                widgetsTexture,
+                0, 0,
+                22, 15
         );
 
         tankOverlay = guiHelper.createDrawable(
@@ -82,6 +98,8 @@ public class GrinderRecipeCategory extends MachineRecipeCategory<GrinderRecipeWr
 
     @Override
     public void drawExtras(@Nonnull Minecraft minecraft) {
+        mobWidget.draw(minecraft, MOB_WIDGET_X, MOB_WIDGET_Y);
+        arrowWidget.draw(minecraft, 73, 32);
         energyOverlay.draw(minecraft, ENERGY_X - BG_X, ENERGY_Y - BG_Y + (BAR_HEIGHT - energyOverlay.getHeight()));
         workOverlay.draw(minecraft, WORK_X - BG_X, WORK_Y - BG_Y);
     }
@@ -89,10 +107,21 @@ public class GrinderRecipeCategory extends MachineRecipeCategory<GrinderRecipeWr
     @Override
     @Nonnull
     public List<String> getTooltipStrings(int mouseX, int mouseY) {
+
         if(mouseX >= ENERGY_X - BG_X && mouseX < ENERGY_X - BG_X + BAR_WIDTH && mouseY >= ENERGY_Y - BG_Y && mouseY < ENERGY_Y - BG_Y + BAR_HEIGHT) {
             return Collections.singletonList(I18n.format("jei.info.mfr.energy", energyPerOperation));
         }
+
+        if(mouseX >= MOB_WIDGET_X && mouseX < MOB_WIDGET_X + mobWidget.getWidth() && mouseY >= MOB_WIDGET_Y && mouseY < MOB_WIDGET_Y + mobWidget.getHeight()) {
+            return Arrays.asList(
+                    I18n.format("jei.info.mfr.grinder"),
+                    I18n.format("jei.info.mfr.grinder.1"),
+                    I18n.format("jei.info.mfr.grinder.2")
+            );
+        }
+
         return Collections.emptyList();
+
     }
 
     @Override
