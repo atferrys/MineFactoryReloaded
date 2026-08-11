@@ -1,0 +1,101 @@
+package powercrystals.minefactoryreloaded.plugin.jei.bioreactor;
+
+import mezz.jei.api.IGuiHelper;
+import mezz.jei.api.IModRegistry;
+import mezz.jei.api.gui.IDrawable;
+import mezz.jei.api.gui.IGuiFluidStackGroup;
+import mezz.jei.api.gui.IGuiItemStackGroup;
+import mezz.jei.api.gui.IRecipeLayout;
+import mezz.jei.api.ingredients.IIngredients;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.oredict.OreDictionary;
+import powercrystals.minefactoryreloaded.MFRRegistry;
+import powercrystals.minefactoryreloaded.api.plant.IFactoryPlantable;
+import powercrystals.minefactoryreloaded.plugin.jei.MachineRecipeCategory;
+import powercrystals.minefactoryreloaded.setup.MFRFluids;
+import powercrystals.minefactoryreloaded.setup.Machine;
+import powercrystals.minefactoryreloaded.tile.machine.processing.TileEntityBioReactor;
+
+import javax.annotation.Nonnull;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
+public class BioReactorRecipeCategory extends MachineRecipeCategory<BioReactorRecipeWrapper> {
+
+    private final IDrawable background;
+    private final IDrawable tankOverlay;
+
+    private final int tankSize;
+
+    public BioReactorRecipeCategory(IGuiHelper guiHelper) {
+
+        super(Machine.BioReactor);
+
+        TileEntityBioReactor dummy = new TileEntityBioReactor();
+        tankSize = dummy.getTanks()[0].getCapacity();
+        dummy = null;
+
+        background = guiHelper.createDrawable(
+                texture,
+                BG_X, BG_Y,
+                168, 73
+        );
+
+        tankOverlay = guiHelper.createDrawable(
+                texture,
+                176, 0,
+                TANK_WIDTH, TANK_HEIGHT
+        );
+
+    }
+
+    @Override
+    @Nonnull
+    public IDrawable getBackground() {
+        return background;
+    }
+
+    @Override
+    public void setRecipe(IRecipeLayout recipeLayout, @Nonnull BioReactorRecipeWrapper recipeWrapper, IIngredients ingredients) {
+
+        IGuiItemStackGroup guiItemStacks = recipeLayout.getItemStacks();
+        IGuiFluidStackGroup guiFluidStacks = recipeLayout.getFluidStacks();
+
+        guiItemStacks.init(0, false, 7 - BG_X, 14 - BG_Y);
+        guiFluidStacks.init(0, true, 132 - BG_X, 15 - BG_Y, TANK_WIDTH, TANK_HEIGHT, tankSize, false, tankOverlay);
+
+        guiItemStacks.set(0, ingredients.getInputs(ItemStack.class).get(0));
+        guiFluidStacks.set(0, ingredients.getOutputs(FluidStack.class).get(0));
+
+    }
+
+    @Override
+    public void registerRecipesHandling(@Nonnull IModRegistry registry) {
+
+        registry.addRecipeCatalyst(this.machine.getItemStack(), this.getUid());
+
+        Map<Item, IFactoryPlantable> plantables = MFRRegistry.getPlantables();
+        List<BioReactorRecipeWrapper> recipes = new ArrayList<>();
+
+        for(Item plantable : plantables.keySet()) {
+
+            ItemStack plantableStack = new ItemStack(plantable, 1, OreDictionary.WILDCARD_VALUE);
+
+            if(plantableStack.isEmpty()) {
+                continue;
+            }
+
+            if(plantables.get(plantable).canBePlanted(plantableStack, true)) {
+                recipes.add(new BioReactorRecipeWrapper(plantableStack, new FluidStack(MFRFluids.biofuel, tankSize)));
+            }
+
+        }
+
+        registry.addRecipes(recipes, this.getUid());
+
+    }
+
+}
