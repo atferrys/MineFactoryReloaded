@@ -26,6 +26,7 @@ import java.util.*;
 public class BioReactorRecipeCategory extends MachineRecipeCategory<BioReactorRecipeWrapper> {
 
     private final IDrawable background;
+    private final IDrawable arrowWidget;
     private final IDrawable tankOverlay;
     private final IDrawable efficiencyOverlay;
 
@@ -45,6 +46,12 @@ public class BioReactorRecipeCategory extends MachineRecipeCategory<BioReactorRe
                 texture,
                 BG_X, BG_Y,
                 168, 73
+        );
+
+        arrowWidget = guiHelper.createDrawable(
+                widgets_texture,
+                0, 0,
+                22, 15
         );
 
         tankOverlay = guiHelper.createDrawable(
@@ -69,6 +76,7 @@ public class BioReactorRecipeCategory extends MachineRecipeCategory<BioReactorRe
 
     @Override
     public void drawExtras(@Nonnull Minecraft minecraft) {
+        arrowWidget.draw(minecraft, 78, 30);
         efficiencyOverlay.draw(minecraft, EFFICIENCY_X - BG_X, EFFICIENCY_Y - BG_Y + (BAR_HEIGHT - efficiencyOverlay.getHeight()));
     }
 

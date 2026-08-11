@@ -35,7 +35,7 @@ public class SludgeBoilerRecipeWrapper implements IRecipeWrapper {
     public void drawInfo(Minecraft minecraft, int recipeWidth, int recipeHeight, int mouseX, int mouseY) {
         String formattedPercent = PERCENT_FORMAT.format(chance);
         int formattedPercentWidth = minecraft.fontRenderer.getStringWidth(formattedPercent);
-        minecraft.fontRenderer.drawString(formattedPercent, 60 - formattedPercentWidth/2, 43, 0x808080);
+        minecraft.fontRenderer.drawString(formattedPercent, 45 - formattedPercentWidth/2, 43, 0x808080);
     }
 
 }

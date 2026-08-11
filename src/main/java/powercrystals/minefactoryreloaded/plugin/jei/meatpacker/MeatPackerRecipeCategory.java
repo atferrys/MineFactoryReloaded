@@ -25,6 +25,7 @@ import java.util.List;
 public class MeatPackerRecipeCategory extends MachineRecipeCategory<MeatPackerRecipeWrapper> {
 
     private final IDrawable background;
+    private final IDrawable arrowWidget;
     private final IDrawable tankOverlay;
     private final IDrawable energyOverlay;
 
@@ -50,6 +51,12 @@ public class MeatPackerRecipeCategory extends MachineRecipeCategory<MeatPackerRe
                 168, 73
         );
 
+        arrowWidget = guiHelper.createDrawable(
+                widgets_texture,
+                0, 15,
+                22, 15
+        );
+
         tankOverlay = guiHelper.createDrawable(
                 texture,
                 176, 0,
@@ -73,6 +80,7 @@ public class MeatPackerRecipeCategory extends MachineRecipeCategory<MeatPackerRe
 
     @Override
     public void drawExtras(@Nonnull Minecraft minecraft) {
+        arrowWidget.draw(minecraft, 73, 30);
         energyOverlay.draw(minecraft, ENERGY_X - BG_X, ENERGY_Y - BG_Y + (BAR_HEIGHT - energyOverlay.getHeight()));
     }
 
@@ -91,7 +99,7 @@ public class MeatPackerRecipeCategory extends MachineRecipeCategory<MeatPackerRe
         IGuiItemStackGroup guiItemStacks = recipeLayout.getItemStacks();
         IGuiFluidStackGroup guiFluidStacks = recipeLayout.getFluidStacks();
 
-        guiItemStacks.init(0, false, 50, 30);
+        guiItemStacks.init(0, false, 40, 28);
         guiFluidStacks.init(0, true, 122 - BG_X, 15 - BG_Y, TANK_WIDTH, TANK_HEIGHT, tankSize, true, tankOverlay);
 
         guiItemStacks.set(0, ingredients.getOutputs(ItemStack.class).get(0));

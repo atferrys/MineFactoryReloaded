@@ -24,6 +24,7 @@ import java.util.stream.Collectors;
 public class LaserDrillRecipeCategory extends MachineRecipeCategory<LaserDrillRecipeWrapper> {
 
     private final IDrawable background;
+    private final IDrawable arrowWidget;
     private final IDrawable focusSlotBackground;
     private final IDrawable energyOverlay;
 
@@ -53,6 +54,12 @@ public class LaserDrillRecipeCategory extends MachineRecipeCategory<LaserDrillRe
                 168, 73
         );
 
+        arrowWidget = guiHelper.createDrawable(
+                widgets_texture,
+                0, 15,
+                22, 15
+        );
+
         focusSlotBackground = guiHelper.createDrawable(
                 texture,
                 61, 78,
@@ -75,11 +82,15 @@ public class LaserDrillRecipeCategory extends MachineRecipeCategory<LaserDrillRe
 
     @Override
     public void drawExtras(@Nonnull Minecraft minecraft) {
+
+        arrowWidget.draw(minecraft, 100, 30);
+
         focusSlotBackground.draw(minecraft, 10, 22);
         energyOverlay.draw(minecraft, ENERGY_X - BG_X, ENERGY_Y - BG_Y);
 
         String focusText = I18n.format("jei.info.mfr.laserdrill.focus");
         minecraft.fontRenderer.drawString(focusText, 10 + SLOT_SIZE/2 - minecraft.fontRenderer.getStringWidth(focusText)/2, 43, 0x808080);
+
     }
 
     @Override
@@ -96,7 +107,7 @@ public class LaserDrillRecipeCategory extends MachineRecipeCategory<LaserDrillRe
 
         IGuiItemStackGroup guiItemStacks = recipeLayout.getItemStacks();
 
-        guiItemStacks.init(0, false, 70, 22);
+        guiItemStacks.init(0, false, 60, 22);
         guiItemStacks.init(1, true, 10, 22);
 
         guiItemStacks.set(0, ingredients.getOutputs(ItemStack.class).get(0));

@@ -41,7 +41,7 @@ public class LaserDrillRecipeWrapper implements IRecipeWrapper {
     public void drawInfo(Minecraft minecraft, int recipeWidth, int recipeHeight, int mouseX, int mouseY) {
         String formattedPercent = PERCENT_FORMAT.format(chance);
         int formattedPercentWidth = minecraft.fontRenderer.getStringWidth(formattedPercent);
-        minecraft.fontRenderer.drawString(formattedPercent, 80 - formattedPercentWidth/2, 43, 0x808080);
+        minecraft.fontRenderer.drawString(formattedPercent, 70 - formattedPercentWidth/2, 43, 0x808080);
     }
 
 }
