@@ -541,3 +541,6 @@ jei.info.mfr.sewer.sewage.1=§7Larger animals produce more sewage.
 jei.info.mfr.grinder=Mobs
 jei.info.mfr.grinder.1=§7Mobs that drop more XP
 jei.info.mfr.grinder.2=§7produce more Essence.
+
+jei.info.mfr.harvester=Harvestable Blocks
+jei.info.mfr.harvester.1=§7Sludge is a byproduct of harvesting.
