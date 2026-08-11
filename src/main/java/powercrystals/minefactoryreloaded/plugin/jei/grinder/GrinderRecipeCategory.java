@@ -7,6 +7,7 @@ import mezz.jei.api.gui.IGuiFluidStackGroup;
 import mezz.jei.api.gui.IRecipeLayout;
 import mezz.jei.api.ingredients.IIngredients;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.resources.I18n;
 import net.minecraftforge.fluids.FluidStack;
 import powercrystals.minefactoryreloaded.plugin.jei.MachineRecipeCategory;
 import powercrystals.minefactoryreloaded.setup.MFRFluids;
@@ -73,7 +74,7 @@ public class GrinderRecipeCategory extends MachineRecipeCategory<GrinderRecipeWr
     @Nonnull
     public List<String> getTooltipStrings(int mouseX, int mouseY) {
         if(mouseX >= ENERGY_X - BG_X && mouseX < ENERGY_X - BG_X + BAR_WIDTH && mouseY >= ENERGY_Y - BG_Y && mouseY < ENERGY_Y - BG_Y + BAR_HEIGHT) {
-            return Collections.singletonList(energyPerOperation + " RF");
+            return Collections.singletonList(I18n.format("jei.info.mfr.energy", energyPerOperation));
         }
         return Collections.emptyList();
     }

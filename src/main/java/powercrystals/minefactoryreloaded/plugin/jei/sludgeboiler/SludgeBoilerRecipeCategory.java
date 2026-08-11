@@ -8,6 +8,7 @@ import mezz.jei.api.gui.IGuiItemStackGroup;
 import mezz.jei.api.gui.IRecipeLayout;
 import mezz.jei.api.ingredients.IIngredients;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.WeightedRandom;
 import net.minecraftforge.fluids.FluidStack;
@@ -80,7 +81,7 @@ public class SludgeBoilerRecipeCategory extends MachineRecipeCategory<SludgeBoil
     @Nonnull
     public List<String> getTooltipStrings(int mouseX, int mouseY) {
         if(mouseX >= ENERGY_X - BG_X && mouseX < ENERGY_X - BG_X + BAR_WIDTH && mouseY >= ENERGY_Y - BG_Y && mouseY < ENERGY_Y - BG_Y + BAR_HEIGHT) {
-            return Collections.singletonList(energyPerOperation + " RF");
+            return Collections.singletonList(I18n.format("jei.info.mfr.energy", energyPerOperation));
         }
         return Collections.emptyList();
     }

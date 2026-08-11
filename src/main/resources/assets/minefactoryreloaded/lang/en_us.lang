@@ -520,3 +520,8 @@ info.mfr.preferences=Preferences
 info.mfr.loot=Loot
 info.mfr.legacy=Legacy
 info.mfr.folded=Folded
+
+# JEI Integration
+
+jei.info.mfr.energy=%s RF
+jei.info.mfr.laser_focus=Focus
