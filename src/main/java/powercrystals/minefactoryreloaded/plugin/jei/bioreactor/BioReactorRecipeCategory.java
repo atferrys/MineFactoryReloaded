@@ -7,6 +7,8 @@ import mezz.jei.api.gui.IGuiFluidStackGroup;
 import mezz.jei.api.gui.IGuiItemStackGroup;
 import mezz.jei.api.gui.IRecipeLayout;
 import mezz.jei.api.ingredients.IIngredients;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidStack;
@@ -19,16 +21,17 @@ import powercrystals.minefactoryreloaded.setup.Machine;
 import powercrystals.minefactoryreloaded.tile.machine.processing.TileEntityBioReactor;
 
 import javax.annotation.Nonnull;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class BioReactorRecipeCategory extends MachineRecipeCategory<BioReactorRecipeWrapper> {
 
     private final IDrawable background;
     private final IDrawable tankOverlay;
+    private final IDrawable efficiencyOverlay;
 
     private final int tankSize;
+
+    private static final int EFFICIENCY_X = 150, EFFICIENCY_Y = 15;
 
     public BioReactorRecipeCategory(IGuiHelper guiHelper) {
 
@@ -50,12 +53,37 @@ public class BioReactorRecipeCategory extends MachineRecipeCategory<BioReactorRe
                 TANK_WIDTH, TANK_HEIGHT
         );
 
+        efficiencyOverlay = guiHelper.createDrawable(
+                texture,
+                176, BAR_HEIGHT + (BAR_HEIGHT - BAR_HEIGHT/2),
+                BAR_WIDTH, BAR_HEIGHT/2
+        );
+
     }
 
     @Override
     @Nonnull
     public IDrawable getBackground() {
         return background;
+    }
+
+    @Override
+    public void drawExtras(@Nonnull Minecraft minecraft) {
+        efficiencyOverlay.draw(minecraft, EFFICIENCY_X - BG_X, EFFICIENCY_Y - BG_Y + (BAR_HEIGHT - efficiencyOverlay.getHeight()));
+    }
+
+    @Override
+    @Nonnull
+    public List<String> getTooltipStrings(int mouseX, int mouseY) {
+        if(mouseX >= EFFICIENCY_X - BG_X && mouseX < EFFICIENCY_X - BG_X + BAR_WIDTH && mouseY >= EFFICIENCY_Y - BG_Y && mouseY < EFFICIENCY_Y - BG_Y + BAR_HEIGHT) {
+            return Arrays.asList(
+                    I18n.format("jei.info.mfr.bioreactor.efficiency"),
+                    I18n.format("jei.info.mfr.bioreactor.efficiency.1"),
+                    I18n.format("jei.info.mfr.bioreactor.efficiency.2"),
+                    I18n.format("jei.info.mfr.bioreactor.efficiency.3")
+            );
+        }
+        return Collections.emptyList();
     }
 
     @Override

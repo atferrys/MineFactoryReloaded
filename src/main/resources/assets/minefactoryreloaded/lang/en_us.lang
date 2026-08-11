@@ -525,3 +525,7 @@ info.mfr.folded=Folded
 
 jei.info.mfr.energy=%s RF
 jei.info.mfr.laserdrill.focus=Focus
+jei.info.mfr.bioreactor.efficiency=Efficiency
+jei.info.mfr.bioreactor.efficiency.1=§7Depends on the amount of different
+jei.info.mfr.bioreactor.efficiency.2=§7items being processed, incrementing
+jei.info.mfr.bioreactor.efficiency.3=§7the BioFuel generation.
