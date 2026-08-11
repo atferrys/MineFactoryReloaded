@@ -524,8 +524,16 @@ info.mfr.folded=Folded
 # JEI Integration
 
 jei.info.mfr.energy=%s RF
+
 jei.info.mfr.laserdrill.focus=Focus
+
 jei.info.mfr.bioreactor.efficiency=Efficiency
 jei.info.mfr.bioreactor.efficiency.1=§7Depends on the amount of different
 jei.info.mfr.bioreactor.efficiency.2=§7items being processed, incrementing
 jei.info.mfr.bioreactor.efficiency.3=§7the BioFuel generation.
+
+jei.info.mfr.sewer.essence=Experience Orbs
+jei.info.mfr.sewer.essence.1=§7XP gets converted into Essence.
+
+jei.info.mfr.sewer.sewage=Animals or Villagers
+jei.info.mfr.sewer.sewage.1=§7Larger animals produce more sewage.
