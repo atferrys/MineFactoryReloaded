@@ -5,6 +5,7 @@ import mezz.jei.api.recipe.IRecipeWrapper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fluids.FluidUtil;
 import powercrystals.minefactoryreloaded.setup.MFRFluids;
 
 import javax.annotation.Nonnull;
@@ -24,7 +25,9 @@ public class SludgeBoilerRecipeWrapper implements IRecipeWrapper {
 
     @Override
     public void getIngredients(@Nonnull IIngredients ingredients) {
-        ingredients.setInput(FluidStack.class, new FluidStack(MFRFluids.sludge, sludgeAmount));
+        FluidStack sludgeStack = new FluidStack(MFRFluids.sludge, sludgeAmount);
+        ingredients.setInput(FluidStack.class, sludgeStack);
+        ingredients.setInput(ItemStack.class, FluidUtil.getFilledBucket(sludgeStack));
         ingredients.setOutput(ItemStack.class, drop);
     }
 
