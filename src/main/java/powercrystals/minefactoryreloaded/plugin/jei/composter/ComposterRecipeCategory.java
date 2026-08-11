@@ -65,7 +65,7 @@ public class ComposterRecipeCategory extends MachineRecipeCategory<ComposterReci
         int energyHeight = this.calculateEnergyHeight(energyPerOperation);
         energyOverlay = guiHelper.createDrawable(
                 texture,
-                176, BAR_HEIGHT + (BAR_HEIGHT - energyHeight),
+                176, 60 + (BAR_HEIGHT - energyHeight),
                 BAR_WIDTH, energyHeight
         );
 

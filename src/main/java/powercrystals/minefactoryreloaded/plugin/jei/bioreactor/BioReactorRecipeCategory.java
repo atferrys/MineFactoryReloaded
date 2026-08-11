@@ -62,7 +62,7 @@ public class BioReactorRecipeCategory extends MachineRecipeCategory<BioReactorRe
 
         efficiencyOverlay = guiHelper.createDrawable(
                 texture,
-                176, BAR_HEIGHT + (BAR_HEIGHT - BAR_HEIGHT/2),
+                176, 60 + (BAR_HEIGHT - BAR_HEIGHT/2),
                 BAR_WIDTH, BAR_HEIGHT/2
         );
 
