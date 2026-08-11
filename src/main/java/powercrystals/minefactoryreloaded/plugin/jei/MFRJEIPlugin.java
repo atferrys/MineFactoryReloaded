@@ -8,6 +8,7 @@ import powercrystals.minefactoryreloaded.plugin.jei.laserdrill.LaserDrillRecipeC
 import powercrystals.minefactoryreloaded.plugin.jei.lavafabricator.LavaFabricatorRecipeCategory;
 import powercrystals.minefactoryreloaded.plugin.jei.meatpacker.MeatPackerRecipeCategory;
 import powercrystals.minefactoryreloaded.plugin.jei.sewer.SewerRecipeCategory;
+import powercrystals.minefactoryreloaded.plugin.jei.slaughterhouse.SlaughterhouseRecipeCategory;
 import powercrystals.minefactoryreloaded.plugin.jei.sludgeboiler.SludgeBoilerRecipeCategory;
 
 import javax.annotation.Nonnull;
@@ -21,6 +22,7 @@ public class MFRJEIPlugin implements IModPlugin {
     private MachineRecipeCategory<?> lavaFabricatorCategory;
     private MachineRecipeCategory<?> meatPackerCategory;
     private MachineRecipeCategory<?> sewerCategory;
+    private MachineRecipeCategory<?> slaughterhouseCategory;
     private MachineRecipeCategory<?> sludgeBoilerCategory;
 
     @Override
@@ -35,6 +37,7 @@ public class MFRJEIPlugin implements IModPlugin {
         registry.addRecipeCategories(lavaFabricatorCategory = new LavaFabricatorRecipeCategory(guiHelper));
         registry.addRecipeCategories(meatPackerCategory = new MeatPackerRecipeCategory(guiHelper));
         registry.addRecipeCategories(sewerCategory = new SewerRecipeCategory(guiHelper));
+        registry.addRecipeCategories(slaughterhouseCategory = new SlaughterhouseRecipeCategory(guiHelper));
         registry.addRecipeCategories(sludgeBoilerCategory = new SludgeBoilerRecipeCategory(guiHelper));
 
     }
@@ -47,6 +50,7 @@ public class MFRJEIPlugin implements IModPlugin {
         lavaFabricatorCategory.registerRecipesHandling(registry);
         meatPackerCategory.registerRecipesHandling(registry);
         sewerCategory.registerRecipesHandling(registry);
+        slaughterhouseCategory.registerRecipesHandling(registry);
         sludgeBoilerCategory.registerRecipesHandling(registry);
     }
 
