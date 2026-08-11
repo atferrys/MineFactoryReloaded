@@ -524,4 +524,4 @@ info.mfr.folded=Folded
 # JEI Integration
 
 jei.info.mfr.energy=%s RF
-jei.info.mfr.laser_focus=Focus
+jei.info.mfr.laserdrill.focus=Focus

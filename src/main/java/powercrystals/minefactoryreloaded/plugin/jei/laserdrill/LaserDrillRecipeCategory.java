@@ -78,7 +78,7 @@ public class LaserDrillRecipeCategory extends MachineRecipeCategory<LaserDrillRe
         focusSlotBackground.draw(minecraft, 10, 22);
         energyOverlay.draw(minecraft, ENERGY_X - BG_X, ENERGY_Y - BG_Y);
 
-        String focusText = I18n.format("jei.info.mfr.laser_focus");
+        String focusText = I18n.format("jei.info.mfr.laserdrill.focus");
         minecraft.fontRenderer.drawString(focusText, 10 + SLOT_SIZE/2 - minecraft.fontRenderer.getStringWidth(focusText)/2, 43, 0x808080);
     }
 
