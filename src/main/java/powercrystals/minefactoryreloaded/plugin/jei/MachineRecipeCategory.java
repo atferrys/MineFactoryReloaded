@@ -19,12 +19,12 @@ public abstract class MachineRecipeCategory<T extends IRecipeWrapper> implements
 
     protected final Machine machine;
     protected final ResourceLocation texture;
-    protected final ResourceLocation widgets_texture;
+    protected final ResourceLocation widgetsTexture;
 
     public MachineRecipeCategory(Machine machine) {
         this.machine = machine;
         this.texture = new ResourceLocation(MFRProps.GUI_FOLDER + this.machine.getName().toLowerCase() + ".png");
-        this.widgets_texture = new ResourceLocation(MFRProps.GUI_FOLDER + "jei_widgets.png");
+        this.widgetsTexture = new ResourceLocation(MFRProps.GUI_FOLDER + "jei_widgets.png");
     }
 
     @Override

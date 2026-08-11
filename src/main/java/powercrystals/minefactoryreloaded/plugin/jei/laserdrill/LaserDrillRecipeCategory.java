@@ -59,7 +59,7 @@ public class LaserDrillRecipeCategory extends MachineRecipeCategory<LaserDrillRe
         );
 
         arrowWidget = guiHelper.createDrawable(
-                widgets_texture,
+                widgetsTexture,
                 0, 15,
                 22, 15
         );

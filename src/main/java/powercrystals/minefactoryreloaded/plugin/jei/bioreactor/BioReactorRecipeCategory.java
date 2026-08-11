@@ -48,7 +48,7 @@ public class BioReactorRecipeCategory extends MachineRecipeCategory<BioReactorRe
         );
 
         arrowWidget = guiHelper.createDrawable(
-                widgets_texture,
+                widgetsTexture,
                 0, 0,
                 22, 15
         );

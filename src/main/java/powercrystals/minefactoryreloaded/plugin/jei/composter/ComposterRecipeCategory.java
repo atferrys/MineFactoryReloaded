@@ -51,7 +51,7 @@ public class ComposterRecipeCategory extends MachineRecipeCategory<ComposterReci
         );
 
         arrowWidget = guiHelper.createDrawable(
-                widgets_texture,
+                widgetsTexture,
                 0, 15,
                 22, 15
         );
