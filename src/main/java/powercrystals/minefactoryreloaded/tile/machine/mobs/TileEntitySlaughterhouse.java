@@ -10,73 +10,82 @@ import powercrystals.minefactoryreloaded.setup.Machine;
 
 import java.util.List;
 
-public class TileEntitySlaughterhouse extends TileEntityGrinder
-{
-	public TileEntitySlaughterhouse()
-	{
+public class TileEntitySlaughterhouse extends TileEntityGrinder {
+
+	public TileEntitySlaughterhouse() {
+
 		super(Machine.Slaughterhouse);
+
 		_damageSource = new GrindingDamage(this, "mfr.slaughterhouse", 2);
 		setManageSolids(false);
 		_tanks[0].setLock(MFRFluids.getFluid("meat"));
 		_tanks[1].setLock(MFRFluids.getFluid("pink_slime"));
+
 	}
 
 	@Override
-	protected FluidTankCore[] createTanks()
-	{
-		return new FluidTankCore[]{new FluidTankCore(4 * BUCKET_VOLUME),
-				new FluidTankCore(2 * BUCKET_VOLUME)};
+	protected FluidTankCore[] createTanks() {
+		return new FluidTankCore[]{
+				new FluidTankCore(4 * BUCKET_VOLUME),
+				new FluidTankCore(2 * BUCKET_VOLUME)
+		};
 	}
 
 	@Override
-	public boolean activateMachine()
-	{
-		List<?> entities = world.getEntitiesWithinAABB(EntityLivingBase.class, _areaManager.getHarvestArea().toAxisAlignedBB());
+	public boolean activateMachine() {
 
-		entityList: for(Object o : entities)
-		{
-			EntityLivingBase e = (EntityLivingBase)o;
-			for(Class<?> t : MFRRegistry.getSlaughterhouseBlacklist())
-			{
-				if(t.isInstance(e))
-				{
+		List<EntityLivingBase> entities = world.getEntitiesWithinAABB(EntityLivingBase.class, _areaManager.getHarvestArea().toAxisAlignedBB());
+
+		entityList:
+		for(EntityLivingBase entity : entities) {
+
+			for(Class<?> blacklistedClass : MFRRegistry.getSlaughterhouseBlacklist()) {
+				if(blacklistedClass.isInstance(entity)) {
 					continue entityList;
 				}
 			}
-			if((e instanceof EntityAgeable && ((EntityAgeable)e).getGrowingAge() < 0) || e.isEntityInvulnerable(_damageSource) ||
-					e.getHealth() <= 0)
-			{
+
+			if((entity instanceof EntityAgeable && ((EntityAgeable) entity).getGrowingAge() < 0)
+					|| entity.isEntityInvulnerable(_damageSource) || entity.getHealth() <= 0) {
 				continue;
 			}
-			float massFound = (float)Math.pow(e.getEntityBoundingBox().getAverageEdgeLength(), 2);
-			damageEntity(e);
-			if(e.getHealth() <= 0)
-			{
-				if (_rand.nextInt(8) != 0)
+
+			float massFound = (float) Math.pow(entity.getEntityBoundingBox().getAverageEdgeLength(), 2);
+			damageEntity(entity);
+
+			if(entity.getHealth() <= 0) {
+
+				if(_rand.nextInt(8) != 0) {
 					fillTank(_tanks[0], "meat", massFound);
-				else
+				} else {
 					fillTank(_tanks[1], "pink_slime", massFound);
+				}
+
 				setIdleTicks(10);
-			}
-			else
-			{
+
+			} else {
 				setIdleTicks(5);
 			}
+
 			return true;
+
 		}
+
 		setIdleTicks(getIdleTicksMax());
+
 		return false;
+
 	}
 
 	@Override
-	public void acceptRawXP(int xpAmount)
-	{
+	public void acceptRawXP(int xpAmount) {
+
 	}
 
 	@Override
-	protected void damageEntity(EntityLivingBase entity)
-	{
+	protected void damageEntity(EntityLivingBase entity) {
 		setRecentlyHit(entity, 0);
 		entity.attackEntityFrom(_damageSource, DAMAGE);
 	}
+
 }

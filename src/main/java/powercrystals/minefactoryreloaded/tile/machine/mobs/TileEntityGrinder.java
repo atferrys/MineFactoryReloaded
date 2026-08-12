@@ -38,11 +38,13 @@ public class TileEntityGrinder extends TileEntityFactoryPowered {
 	protected TileEntityGrinder(Machine machine) {
 
 		super(machine);
+
 		createEntityHAM(this);
 		_rand = new Random();
 		setManageSolids(true);
 		setCanRotate(true);
 		_tanks[0].setLock(MFRFluids.getFluid("mob_essence"));
+
 	}
 
 	public TileEntityGrinder() {
@@ -56,18 +58,16 @@ public class TileEntityGrinder extends TileEntityFactoryPowered {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public GuiFactoryInventory getGui(InventoryPlayer inventoryPlayer) {
-
 		return new GuiFactoryPowered(getContainer(inventoryPlayer), this);
 	}
 
 	@Override
 	public ContainerFactoryPowered getContainer(InventoryPlayer inventoryPlayer) {
-
 		return new ContainerFactoryPowered(this, inventoryPlayer);
 	}
 
 	@Override
-	public void setWorld(World world) {
+	public void setWorld(@Nonnull World world) {
 
 		super.setWorld(world);
 
@@ -78,75 +78,91 @@ public class TileEntityGrinder extends TileEntityFactoryPowered {
 	}
 
 	public Random getRandom() {
-
 		return _rand;
 	}
 
 	@Override
 	protected boolean shouldPumpLiquid() {
-
 		return true;
 	}
 
 	@Override
 	public int getWorkMax() {
-
 		return 1;
 	}
 
 	@Override
 	public int getIdleTicksMax() {
-
 		return 200;
 	}
 
 	@Override
 	public boolean activateMachine() {
+
 		List<EntityLivingBase> entities = world.getEntitiesWithinAABB(EntityLivingBase.class, _areaManager.getHarvestArea().toAxisAlignedBB());
 
 		entityList:
-		for (EntityLivingBase e : entities) {
-			if (e instanceof EntityAgeable && ((EntityAgeable) e).getGrowingAge() < 0 || e.isEntityInvulnerable(_damageSource) ||
-					e.getHealth() <= 0) {
+		for(EntityLivingBase entity : entities) {
+
+			if(entity instanceof EntityAgeable && ((EntityAgeable) entity).getGrowingAge() < 0
+					|| entity.isEntityInvulnerable(_damageSource) || entity.getHealth() <= 0) {
 				continue;
 			}
 
 			processEntity:
 			{
-				if (MFRRegistry.getGrindables().containsKey(e.getClass())) {
-					IFactoryGrindable r = MFRRegistry.getGrindables().get(e.getClass());
-					List<MobDrop> drops = r.grind(e.world, e, getRandom());
-					if (drops != null && drops.size() > 0 && WeightedRandom.getTotalWeight(drops) > 0) {
-						@Nonnull ItemStack drop = WeightedRandom.getRandomItem(_rand, drops).getStack();
+
+				if(MFRRegistry.getGrindables().containsKey(entity.getClass())) {
+
+					IFactoryGrindable grindable = MFRRegistry.getGrindables().get(entity.getClass());
+					List<MobDrop> drops = grindable.grind(entity.world, entity, getRandom());
+
+					if(drops != null && !drops.isEmpty() && WeightedRandom.getTotalWeight(drops) > 0) {
+
+						@Nonnull
+						ItemStack drop = WeightedRandom.getRandomItem(_rand, drops).getStack();
+
 						doDrop(drop);
+
 					}
-					if (r.processEntity(e)) {
-						if (e.getHealth() <= 0) {
+
+					if(grindable.processEntity(entity)) {
+
+						if(entity.getHealth() <= 0) {
 							setIdleTicks(20);
 							return true;
 						}
+
 						break processEntity;
+
 					}
+
 				}
 
-				for (Class<?> t : MFRRegistry.getGrinderBlacklist()) {
-					if (t.isInstance(e)) {
+				for(Class<?> blacklistedClass : MFRRegistry.getGrinderBlacklist()) {
+					if(blacklistedClass.isInstance(entity)) {
 						continue entityList;
 					}
 				}
+
 			}
 
-			damageEntity(e);
-			if (e.getHealth() <= 0) {
-				//fillTank(_tanks[0], "mob_essence", 1);
+			damageEntity(entity);
+
+			if(entity.getHealth() <= 0) {
 				setIdleTicks(20);
 			} else {
 				setIdleTicks(10);
 			}
+
 			return true;
+
 		}
+
 		setIdleTicks(getIdleTicksMax());
+
 		return false;
+
 	}
 
 	protected void setRecentlyHit(EntityLivingBase entity, int t) {
@@ -154,7 +170,6 @@ public class TileEntityGrinder extends TileEntityFactoryPowered {
 	}
 
 	protected void damageEntity(EntityLivingBase entity) {
-
 		setRecentlyHit(entity, 100);
 		entity.attackEntityFrom(_damageSource, DAMAGE);
 	}
@@ -174,37 +189,31 @@ public class TileEntityGrinder extends TileEntityFactoryPowered {
 
 	@Override
 	public int getSizeInventory() {
-
 		return 0;
 	}
 
 	protected void fillTank(FluidTankCore tank, String fluid, float amount) {
-
 		tank.fill(FluidRegistry.getFluidStack(fluid, (int) (100 * amount)), true);
 		markDirty();
 	}
 
 	@Override
 	protected FluidTankCore[] createTanks() {
-
 		return new FluidTankCore[] { new FluidTankCore(4 * BUCKET_VOLUME) };
 	}
 
 	@Override
 	public boolean allowBucketDrain(EnumFacing facing, @Nonnull ItemStack stack) {
-
 		return true;
 	}
 
 	@Override
 	protected boolean canFillTank(EnumFacing facing, int index) {
-
 		return false;
 	}
 
 	@Override
 	public int fill(EnumFacing facing, FluidStack resource, boolean doFill) {
-
 		return 0;
 	}
 
