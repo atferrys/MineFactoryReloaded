@@ -11,6 +11,7 @@ import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.WorldServer;
 import net.minecraftforge.common.util.FakePlayer;
 import net.minecraftforge.common.util.FakePlayerFactory;
+import powercrystals.minefactoryreloaded.tile.machine.mobs.TileEntityGrinder;
 
 import javax.annotation.Nullable;
 import java.lang.ref.WeakReference;
@@ -27,19 +28,24 @@ public class GrindingDamage extends DamageSource {
 	protected Random _rand;
 	private WeakReference<FakePlayer> fakePlayerRef;
 
-	public GrindingDamage() {
-
-		this(null, 1);
-	}
+	@Nullable
+	public final TileEntityGrinder grinder;
 
 	public GrindingDamage(String type) {
-
-		this(type, 1);
+		this(null, type, 1);
 	}
 
-	public GrindingDamage(String type, int deathMessages) {
+	public GrindingDamage(@Nullable TileEntityGrinder grinder) {
+		this(grinder, null, 1);
+	}
 
+	public GrindingDamage(@Nullable TileEntityGrinder grinder, String type) {
+		this(grinder, type, 1);
+	}
+
+	public GrindingDamage(@Nullable TileEntityGrinder grinder, String type, int deathMessages) {
 		super(type == null ? "mfr.grinder" : type);
+		this.grinder = grinder;
 		setDamageIsAbsolute();
 		setDamageBypassesArmor();
 		setDamageAllowedInCreativeMode();

@@ -1,37 +1,24 @@
 package powercrystals.minefactoryreloaded.tile.machine.mobs;
 
 import cofh.core.fluid.FluidTankCore;
-
-import java.util.List;
-
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.item.EntityXPOrb;
-import net.minecraft.world.World;
-
 import powercrystals.minefactoryreloaded.MFRRegistry;
 import powercrystals.minefactoryreloaded.core.GrindingDamage;
 import powercrystals.minefactoryreloaded.setup.MFRFluids;
 import powercrystals.minefactoryreloaded.setup.Machine;
-import powercrystals.minefactoryreloaded.tile.machine.mobs.TileEntityGrinder;
+
+import java.util.List;
 
 public class TileEntitySlaughterhouse extends TileEntityGrinder
 {
 	public TileEntitySlaughterhouse()
 	{
 		super(Machine.Slaughterhouse);
-		_damageSource = new GrindingDamage("mfr.slaughterhouse", 2);
+		_damageSource = new GrindingDamage(this, "mfr.slaughterhouse", 2);
 		setManageSolids(false);
 		_tanks[0].setLock(MFRFluids.getFluid("meat"));
 		_tanks[1].setLock(MFRFluids.getFluid("pink_slime"));
-	}
-
-	@Override
-	public void setWorld(World world)
-	{
-		super.setWorld(world);
-		if (_grindingWorld != null)
-			this._grindingWorld.setAllowSpawns(true);
 	}
 
 	@Override
@@ -44,7 +31,6 @@ public class TileEntitySlaughterhouse extends TileEntityGrinder
 	@Override
 	public boolean activateMachine()
 	{
-		_grindingWorld.cleanReferences();
 		List<?> entities = world.getEntitiesWithinAABB(EntityLivingBase.class, _areaManager.getHarvestArea().toAxisAlignedBB());
 
 		entityList: for(Object o : entities)
@@ -58,7 +44,7 @@ public class TileEntitySlaughterhouse extends TileEntityGrinder
 				}
 			}
 			if((e instanceof EntityAgeable && ((EntityAgeable)e).getGrowingAge() < 0) || e.isEntityInvulnerable(_damageSource) ||
-					e.getHealth() <= 0 || !_grindingWorld.addEntityForGrinding(e))
+					e.getHealth() <= 0)
 			{
 				continue;
 			}
@@ -83,7 +69,7 @@ public class TileEntitySlaughterhouse extends TileEntityGrinder
 	}
 
 	@Override
-	public void acceptXPOrb(EntityXPOrb orb)
+	public void acceptRawXP(int xpAmount)
 	{
 	}
 

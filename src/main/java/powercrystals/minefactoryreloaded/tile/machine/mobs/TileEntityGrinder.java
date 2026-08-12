@@ -3,7 +3,6 @@ package powercrystals.minefactoryreloaded.tile.machine.mobs;
 import cofh.core.fluid.FluidTankCore;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.item.EntityXPOrb;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
@@ -18,14 +17,12 @@ import powercrystals.minefactoryreloaded.MFRRegistry;
 import powercrystals.minefactoryreloaded.api.mob.IFactoryGrindable;
 import powercrystals.minefactoryreloaded.api.mob.MobDrop;
 import powercrystals.minefactoryreloaded.core.GrindingDamage;
-import powercrystals.minefactoryreloaded.core.MFRLiquidMover;
 import powercrystals.minefactoryreloaded.gui.client.GuiFactoryInventory;
 import powercrystals.minefactoryreloaded.gui.client.GuiFactoryPowered;
 import powercrystals.minefactoryreloaded.gui.container.ContainerFactoryPowered;
 import powercrystals.minefactoryreloaded.setup.MFRFluids;
 import powercrystals.minefactoryreloaded.setup.Machine;
 import powercrystals.minefactoryreloaded.tile.base.TileEntityFactoryPowered;
-import powercrystals.minefactoryreloaded.world.GrindingWorldServer;
 
 import javax.annotation.Nonnull;
 import java.util.List;
@@ -36,7 +33,6 @@ public class TileEntityGrinder extends TileEntityFactoryPowered {
 	public static final float DAMAGE = 0x1.fffffeP+120f;
 
 	protected Random _rand;
-	protected GrindingWorldServer _grindingWorld;
 	protected GrindingDamage _damageSource;
 
 	protected TileEntityGrinder(Machine machine) {
@@ -52,7 +48,9 @@ public class TileEntityGrinder extends TileEntityFactoryPowered {
 	public TileEntityGrinder() {
 
 		this(Machine.Grinder);
-		_damageSource = new GrindingDamage();
+
+		_damageSource = new GrindingDamage(this);
+
 	}
 
 	@Override
@@ -72,25 +70,11 @@ public class TileEntityGrinder extends TileEntityFactoryPowered {
 	public void setWorld(World world) {
 
 		super.setWorld(world);
-		if (_grindingWorld != null) {
-			_grindingWorld.clearReferences();
-			_grindingWorld.setMachine(null);
-		}
-		if (this.world instanceof WorldServer) {
-			_grindingWorld = new GrindingWorldServer((WorldServer) this.world, this);
+
+		if(this.world instanceof WorldServer) {
 			_damageSource.setupGrindingPlayer((WorldServer) this.world);
 		}
-	}
 
-	@Override
-	public void onChunkUnload() {
-
-		super.onChunkUnload();
-		if (_grindingWorld != null) {
-			_grindingWorld.clearReferences();
-			_grindingWorld.setMachine(null);
-		}
-		_grindingWorld = null;
 	}
 
 	public Random getRandom() {
@@ -118,8 +102,6 @@ public class TileEntityGrinder extends TileEntityFactoryPowered {
 
 	@Override
 	public boolean activateMachine() {
-
-		_grindingWorld.cleanReferences();
 		List<EntityLivingBase> entities = world.getEntitiesWithinAABB(EntityLivingBase.class, _areaManager.getHarvestArea().toAxisAlignedBB());
 
 		entityList:
@@ -154,10 +136,6 @@ public class TileEntityGrinder extends TileEntityFactoryPowered {
 				}
 			}
 
-			if (!_grindingWorld.addEntityForGrinding(e)) {
-				continue entityList;
-			}
-
 			damageEntity(e);
 			if (e.getHealth() <= 0) {
 				//fillTank(_tanks[0], "mob_essence", 1);
@@ -181,9 +159,17 @@ public class TileEntityGrinder extends TileEntityFactoryPowered {
 		entity.attackEntityFrom(_damageSource, DAMAGE);
 	}
 
-	public void acceptXPOrb(EntityXPOrb orb) {
+	public void acceptRawXP(int xpAmount) {
 
-		MFRLiquidMover.fillTankWithXP(_tanks[0], orb);
+		if(xpAmount < 0) {
+			return;
+		}
+
+		int essenceAmount = (int) (xpAmount * 66.66666667f);
+
+		_tanks[0].fill(FluidRegistry.getFluidStack("mob_essence", essenceAmount), true);
+		markDirty();
+
 	}
 
 	@Override

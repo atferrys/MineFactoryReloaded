@@ -13,7 +13,7 @@ public class LoadingPlugin implements IFMLLoadingPlugin {
 
 	@Override
 	public String[] getASMTransformerClass() {
-		return new String[] { WorldTransformer.class.getName() };
+		return null;
 	}
 
 	@Override
