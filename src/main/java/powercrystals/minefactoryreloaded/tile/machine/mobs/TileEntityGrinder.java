@@ -22,7 +22,6 @@ import powercrystals.minefactoryreloaded.core.MFRLiquidMover;
 import powercrystals.minefactoryreloaded.gui.client.GuiFactoryInventory;
 import powercrystals.minefactoryreloaded.gui.client.GuiFactoryPowered;
 import powercrystals.minefactoryreloaded.gui.container.ContainerFactoryPowered;
-import powercrystals.minefactoryreloaded.mixin.EntityLivingBaseAccessor;
 import powercrystals.minefactoryreloaded.setup.MFRFluids;
 import powercrystals.minefactoryreloaded.setup.Machine;
 import powercrystals.minefactoryreloaded.tile.base.TileEntityFactoryPowered;
@@ -173,7 +172,7 @@ public class TileEntityGrinder extends TileEntityFactoryPowered {
 	}
 
 	protected void setRecentlyHit(EntityLivingBase entity, int t) {
-		((EntityLivingBaseAccessor) entity).setRecentlyHit(t);
+		entity.recentlyHit = t;
 	}
 
 	protected void damageEntity(EntityLivingBase entity) {
