@@ -27,7 +27,6 @@ import powercrystals.minefactoryreloaded.net.MFRPacket;
 import powercrystals.minefactoryreloaded.setup.*;
 import powercrystals.minefactoryreloaded.setup.village.VillageCreationHandler;
 import powercrystals.minefactoryreloaded.setup.village.Zoologist;
-import powercrystals.minefactoryreloaded.net.GrinderDropHandler;
 import powercrystals.minefactoryreloaded.tile.machine.processing.TileEntityUnifier;
 import powercrystals.minefactoryreloaded.world.MineFactoryReloadedWorldGen;
 
@@ -97,7 +96,6 @@ public class MineFactoryReloadedCore extends BaseMod {
 		MinecraftForge.EVENT_BUS.register(rednetCableBlock);
 		MinecraftForge.EVENT_BUS.register(new EntityHandler());
 		MinecraftForge.EVENT_BUS.register(MFRFluids.INSTANCE);
-		MinecraftForge.EVENT_BUS.register(new GrinderDropHandler());
 
 		proxy.init();
 		MFRFarmables.load();
