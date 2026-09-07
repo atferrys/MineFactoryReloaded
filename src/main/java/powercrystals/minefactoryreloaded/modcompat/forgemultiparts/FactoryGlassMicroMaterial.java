@@ -8,7 +8,6 @@ import codechicken.lib.vec.Vector3;
 import codechicken.lib.vec.uv.IconTransformation;
 import codechicken.microblock.BlockMicroMaterial;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.util.BlockRenderLayer;
 import powercrystals.minefactoryreloaded.render.block.FactoryGlassRenderer;
 import scala.collection.JavaConversions;
@@ -39,11 +38,6 @@ public class FactoryGlassMicroMaterial extends BlockMicroMaterial {
 		// if this is being used anywhere else, so I'm gonna use this random private function. WHO EVEN USES SCALA FOR MODS???
 		pIconT_$eq(frame);
 
-	}
-
-	@Override
-	public TextureAtlasSprite getBreakingIcon(int side) {
-		return frame.icon;
 	}
 
 	@Override
