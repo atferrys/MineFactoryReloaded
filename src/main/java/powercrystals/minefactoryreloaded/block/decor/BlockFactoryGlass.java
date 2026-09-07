@@ -266,12 +266,25 @@ public class BlockFactoryGlass extends BlockGlass implements IRedNetDecorative, 
 	@SideOnly(Side.CLIENT)
 	public void registerColorHandlers() {
 
+		Minecraft.getMinecraft().getBlockColors().registerBlockColorHandler((state, world, pos, tintIndex) -> {
+
+			if(tintIndex != 0) {
+				return 0xFFFFFF;
+			}
+
+			return state.getValue(COLOR).getColor();
+
+		}, this);
+
 		Minecraft.getMinecraft().getItemColors().registerItemColorHandler((stack, tintIndex) -> {
 
-			if (tintIndex != 0 || stack.getMetadata() > 15 || stack.getMetadata() < 0)
+			if(tintIndex != 0 || stack.getMetadata() > 15 || stack.getMetadata() < 0) {
 				return 0xFFFFFF;
+			}
 
 			return MFRDyeColor.byMetadata(stack.getMetadata()).getColor();
+
 		}, this);
+
 	}
 }

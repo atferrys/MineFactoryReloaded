@@ -1,5 +1,9 @@
 package powercrystals.minefactoryreloaded.modcompat.forgemultiparts;
 
+import codechicken.microblock.BlockMicroMaterial;
+import codechicken.microblock.MicroMaterialRegistry;
+import net.minecraft.block.Block;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
@@ -8,8 +12,6 @@ import net.minecraft.util.NonNullList;
 import net.minecraftforge.fml.common.event.FMLInterModComms;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import powercrystals.minefactoryreloaded.api.integration.IMFRIntegrator;
-
-import javax.annotation.Nonnull;
 
 import static powercrystals.minefactoryreloaded.api.integration.IMFRRecipeSet.stack;
 import static powercrystals.minefactoryreloaded.modcompat.Compats.ModIds.MFR;
@@ -32,27 +34,32 @@ public class MultipartCBE implements IMFRIntegrator {
 	public static final Item rubberWoodBlock = Items.AIR;
 
 	public void load() {
-		addSubtypes(factoryDecorativeBrickBlock);
-		addSubtypes(factoryDecorativeStoneBlock);
-		addSubtypes(factoryGlassBlock);
-		addSubtypes(factoryRoadBlock);
-		addSubtypes(rubberLeavesBlock);
-		registerBlock(stack(rubberWoodBlock, 1, 0));
+
+		this.getSubtypes(factoryDecorativeBrickBlock).forEach(this::registerViaIMC);
+		this.getSubtypes(factoryDecorativeStoneBlock).forEach(this::registerViaIMC);
+		this.getSubtypes(factoryRoadBlock).forEach(this::registerViaIMC);
+		this.getSubtypes(rubberLeavesBlock).forEach(this::registerViaIMC);
+		this.registerViaIMC(stack(rubberWoodBlock, 1, 0));
+
+		this.getSubtypes(factoryGlassBlock).forEach(stack -> {
+			IBlockState state = Block.getBlockFromItem(stack.getItem()).getStateFromMeta(stack.getMetadata());
+			String key = BlockMicroMaterial.materialKey(state);
+			MicroMaterialRegistry.registerMaterial(new FactoryGlassMicroMaterial(state, key), key);
+		});
+
 	}
 
-	private void addSubtypes(Item item) {
+	private NonNullList<ItemStack> getSubtypes(Item item) {
 
 		NonNullList<ItemStack> items = NonNullList.create();
 		item.getSubItems(CreativeTabs.SEARCH, items);
 
-		for(int i = items.size(); i-- > 0;) {
-			registerBlock(items.get(i));
-		}
+		return items;
 
 	}
 
-	private void registerBlock(ItemStack data) {
-		FMLInterModComms.sendMessage(MULTIPARTCBE, "microMaterial", data);
+	private void registerViaIMC(ItemStack stack) {
+		FMLInterModComms.sendMessage(MULTIPARTCBE, "microMaterial", stack);
 	}
 
 }

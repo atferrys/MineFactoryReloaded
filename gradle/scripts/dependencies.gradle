@@ -88,6 +88,7 @@ dependencies {
 
     runtimeOnly rfg.deobf("codechicken:CodeChickenLib:1.12.2-3.2.3.358:universal")
     compileOnly "codechicken:CodeChickenLib:1.12.2-3.2.3.358:deobf"
+    compileOnly "codechicken:ForgeMultipart:1.12.2-2.6.2.83:deobf"
 
     runtimeOnly(rfg.deobf("cofh:CoFHCore:1.12.2-4.6.3.27:universal")) {
         transitive = false

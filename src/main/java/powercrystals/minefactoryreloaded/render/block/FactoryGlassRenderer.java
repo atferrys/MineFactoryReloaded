@@ -29,6 +29,8 @@ public class FactoryGlassRenderer implements ISimpleBlockBakery {
 	public static final ModelResourceLocation MODEL_LOCATION = new ModelResourceLocation(MFRProps.PREFIX + "stained_glass", "normal");
 	private static final ResourceLocation SPRITE_LOCATION = new ResourceLocation(MFRProps.TEXTURE_FOLDER + "blocks/tile.mfr.stainedglass.png");
 	public static final int FULL_FRAME = 0;
+	public static final int HIGHLIGHTS = 62;
+	public static final int BASE = 63;
 	public static SpriteSheetManager.SpriteSheet spriteSheet = SpriteSheetManager.getSheet(8, 8, SPRITE_LOCATION);
 
 	static {
@@ -100,7 +102,8 @@ public class FactoryGlassRenderer implements ISimpleBlockBakery {
 
 		List<BakedQuad> quads = new ArrayList<>(3);
 		quads.addAll(getCoreQuadsForSide(state.getValue(BlockFactoryGlass.COLOR), face));
-		quads.add(getFrameQuadForSide(face, state.getValue(BlockFactoryGlass.CTM_VALUE[face.ordinal()])));
+		Integer ctmValue = state.getValue(BlockFactoryGlass.CTM_VALUE[face.ordinal()]);
+		quads.add(getFrameQuadForSide(face, ctmValue == null ? 0 : ctmValue));
 		return quads;
 	}
 
@@ -114,8 +117,8 @@ public class FactoryGlassRenderer implements ISimpleBlockBakery {
 		int colorValue = (color.getColor() << 8) + 0xFF;
 
 		List<BakedQuad> faceQuads = new ArrayList<>();
-		faceQuads.add(PlanarFaceBakery.bakeFace(side, spriteSheet.getSprite(63), DefaultVertexFormats.ITEM, colorValue));
-		faceQuads.add(PlanarFaceBakery.bakeFace(side, spriteSheet.getSprite(62)));
+		faceQuads.add(PlanarFaceBakery.bakeFace(side, spriteSheet.getSprite(BASE), DefaultVertexFormats.ITEM, colorValue));
+		faceQuads.add(PlanarFaceBakery.bakeFace(side, spriteSheet.getSprite(HIGHLIGHTS)));
 
 		return faceQuads;
 	}
