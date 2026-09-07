@@ -1,0 +1,6 @@
+{
+	"parent": "minecraft:block/leaves",
+	"textures": {
+		"all": "minefactoryreloaded:blocks/tile.mfr.rubberwood.leaves.dry.transparent"
+	}
+}

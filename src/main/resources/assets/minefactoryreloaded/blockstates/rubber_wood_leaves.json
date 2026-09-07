@@ -1,0 +1,16 @@
+{
+	"variants": {
+		"fancy=true,variant=normal": {
+			"model": "minefactoryreloaded:rubber_wood_leaves"
+		},
+		"fancy=true,variant=dry": {
+			"model": "minefactoryreloaded:rubber_wood_leaves_dry"
+		},
+		"fancy=false,variant=normal": {
+			"model": "minefactoryreloaded:rubber_wood_leaves_opaque"
+		},
+		"fancy=false,variant=dry": {
+			"model": "minefactoryreloaded:rubber_wood_leaves_dry_opaque"
+		}
+	}
+}
