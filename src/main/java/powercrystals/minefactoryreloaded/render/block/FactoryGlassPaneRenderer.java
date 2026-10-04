@@ -115,7 +115,8 @@ public class FactoryGlassPaneRenderer implements ISimpleBlockBakery {
 		ImmutableMap.Builder<EnumFacing, TextureAtlasSprite> builder = ImmutableMap.builder();
 
 		for (EnumFacing facing : EnumFacing.HORIZONTALS) {
-			builder.put(facing, FactoryGlassRenderer.getSpriteByCTMValue(exState.getValue(BlockFactoryGlassPane.CTM_VALUE[facing.getHorizontalIndex()])));
+			Integer ctmValue = exState.getValue(BlockFactoryGlassPane.CTM_VALUE[facing.getHorizontalIndex()]);
+			builder.put(facing, FactoryGlassRenderer.getSpriteByCTMValue(ctmValue == null ? 0 : ctmValue));
 		}
 		return builder.build();
 	}
