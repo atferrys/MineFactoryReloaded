@@ -83,9 +83,12 @@ public class FactoryGlassPaneRenderer implements ISimpleBlockBakery {
 
 		int color = (state.getValue(BlockFactoryGlassPane.COLOR).getColor() << 8) + 0xFF;
 		Map<EnumFacing, TextureAtlasSprite> overlayTextures = getOverlayTextures(exState);
-		int ctmValueSouth = exState.getValue(BlockFactoryGlassPane.CTM_VALUE[0]);
-		int ctmValueWest = exState.getValue(BlockFactoryGlassPane.CTM_VALUE[1]);
-		Map<EnumFacing, Boolean> connections = getConnections(ctmValueSouth, ctmValueWest);
+		Integer ctmValueSouth = exState.getValue(BlockFactoryGlassPane.CTM_VALUE[0]);
+		Integer ctmValueWest = exState.getValue(BlockFactoryGlassPane.CTM_VALUE[1]);
+		Map<EnumFacing, Boolean> connections = getConnections(
+				ctmValueSouth == null ? 0 : ctmValueSouth,
+				ctmValueWest == null ? 0 : ctmValueWest
+		);
 
 		renderPaneParts(exState, ccrs, color, overlayTextures, connections);
 	}
@@ -93,7 +96,12 @@ public class FactoryGlassPaneRenderer implements ISimpleBlockBakery {
 	private void renderPaneParts(IExtendedBlockState state, CCRenderState ccrs, int color, Map<EnumFacing, TextureAtlasSprite> overlayTextures,
 			Map<EnumFacing, Boolean> connections) {
 
-		int facesToShow = state.getValue(BlockFactoryGlassPane.FACES);
+		Integer facesToShow = state.getValue(BlockFactoryGlassPane.FACES);
+
+		if(facesToShow == null) {
+			facesToShow = 0;
+		}
+
 		renderPaneSide(ccrs, EnumFacing.NORTH, color, overlayTextures, connections, state.getValue(BlockPane.NORTH), facesToShow);
 		renderPaneSide(ccrs, EnumFacing.SOUTH, color, overlayTextures, connections, state.getValue(BlockPane.SOUTH), facesToShow);
 		renderPaneSide(ccrs, EnumFacing.WEST, color, overlayTextures, connections, state.getValue(BlockPane.WEST), facesToShow);
