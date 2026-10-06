@@ -4,6 +4,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.IGrowable;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraft.world.biome.Biome;
 import powercrystals.minefactoryreloaded.api.integration.IMFRIntegrator;
 import powercrystals.minefactoryreloaded.farmables.fertilizables.FertilizableStandard;
 import powercrystals.minefactoryreloaded.farmables.fruits.FactoryFruitStandard;
@@ -26,10 +27,20 @@ public class ProjectVibrantJourneys implements IMFRIntegrator {
     }
 
     private void registerRubberTreeBiomes() {
-        REGISTRY.registerRubberTreeBiome(PVJBiomes.willow_swamp);
-        REGISTRY.registerRubberTreeBiome(PVJBiomes.boreal_forest);
-        REGISTRY.registerRubberTreeBiome(PVJBiomes.aspen_grove);
-        REGISTRY.registerRubberTreeBiome(PVJBiomes.overgrown_spires);
+
+        Biome[] pvjBiomes = {
+                PVJBiomes.willow_swamp,
+                PVJBiomes.boreal_forest,
+                PVJBiomes.aspen_grove,
+                PVJBiomes.overgrown_spires
+        };
+
+        for(Biome biome : pvjBiomes) {
+            if(biome.delegate.name() != null) {
+                REGISTRY.registerRubberTreeBiome(biome);
+            }
+        }
+
     }
 
     private void registerFarmables() {
