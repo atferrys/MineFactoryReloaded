@@ -1,9 +1,5 @@
 package powercrystals.minefactoryreloaded.modcompat.forgemultiparts;
 
-import codechicken.microblock.BlockMicroMaterial;
-import codechicken.microblock.MicroMaterialRegistry;
-import net.minecraft.block.Block;
-import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
@@ -40,12 +36,7 @@ public class MultipartCBE implements IMFRIntegrator {
 		this.getSubtypes(factoryRoadBlock).forEach(this::registerViaIMC);
 		this.getSubtypes(rubberLeavesBlock).forEach(this::registerViaIMC);
 		this.registerViaIMC(stack(rubberWoodBlock, 1, 0));
-
-		this.getSubtypes(factoryGlassBlock).forEach(stack -> {
-			IBlockState state = Block.getBlockFromItem(stack.getItem()).getStateFromMeta(stack.getMetadata());
-			String key = BlockMicroMaterial.materialKey(state);
-			MicroMaterialRegistry.registerMaterial(new FactoryGlassMicroMaterial(state, key), key);
-		});
+		this.getSubtypes(factoryGlassBlock).forEach(FactoryGlassMicroMaterial::registerMaterial);
 
 	}
 

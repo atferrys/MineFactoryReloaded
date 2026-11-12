@@ -7,7 +7,10 @@ import codechicken.lib.vec.Cuboid6;
 import codechicken.lib.vec.Vector3;
 import codechicken.lib.vec.uv.IconTransformation;
 import codechicken.microblock.BlockMicroMaterial;
+import codechicken.microblock.MicroMaterialRegistry;
+import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.BlockRenderLayer;
 import powercrystals.minefactoryreloaded.render.block.FactoryGlassRenderer;
 import scala.collection.JavaConversions;
@@ -67,6 +70,15 @@ public class FactoryGlassMicroMaterial extends BlockMicroMaterial {
 		}
 
 		return JavaConversions.asScalaBuffer(ops).toSeq();
+
+	}
+
+	public static void registerMaterial(ItemStack stack) {
+
+		IBlockState state = Block.getBlockFromItem(stack.getItem()).getStateFromMeta(stack.getMetadata());
+		String key = BlockMicroMaterial.materialKey(state);
+
+		MicroMaterialRegistry.registerMaterial(new FactoryGlassMicroMaterial(state, key), key);
 
 	}
 
