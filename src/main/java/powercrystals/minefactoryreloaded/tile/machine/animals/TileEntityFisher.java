@@ -88,7 +88,11 @@ public class TileEntityFisher extends TileEntityFactoryPowered {
 		if (!incrementWorkDone()) return false;
 
 		if (getWorkDone() > getWorkMax()) {
-			_inventory.get(0).attemptDamageItem(1, _rand, null);
+
+			if(_inventory.get(0).attemptDamageItem(1, _rand, null)) {
+				_inventory.get(0).shrink(1);
+			}
+
 			LootContext.Builder context = new LootContext.Builder((WorldServer)this.world);
 			context.withLuck(_luck);
 			for (@Nonnull ItemStack stack : this.world.getLootTableManager().getLootTableFromLocation(LootTableList.GAMEPLAY_FISHING).generateLootForPools(_rand, context.build())) {
