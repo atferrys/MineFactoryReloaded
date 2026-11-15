@@ -319,8 +319,8 @@ public class MineFactoryReloadedClient implements IResourceManagerReloadListener
 	public void renderWorldLast(RenderWorldLastEvent e) {
 
 		EntityPlayer player = Minecraft.getMinecraft().player;
-		if (player.inventory.getCurrentItem().isEmpty() ||
-				!player.inventory.getCurrentItem().getItem().equals(factoryHammerItem)) {
+		if(player.getHeldItemMainhand().getItem() != factoryHammerItem &&
+				player.getHeldItemOffhand().getItem() != factoryHammerItem) {
 			return;
 		}
 
